@@ -1,0 +1,48 @@
+// Place all the styles related to the patients controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400&family=Sora:wght@400;700&display=swap');
+
+
+
+body{
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-family: 'Sora', sans-serif;
+}
+
+.row {
+  margin-top: 60px;
+}
+table { 
+  border-collapse: collapse;
+  padding: 10px;
+  margin-top: 50px;
+  border-collapse: collapse;
+  width: 90%;
+  height: 100px;
+}
+
+th{
+  border:1px solid #888;
+  padding: 10px;
+}
+td{
+  border:1px solid #338;
+  padding: 10px;
+}
+
+.scroll {
+  white-space: nowrap;
+  overflow-x: auto; 
+}
+.btn {
+  padding: 14px 18px;
+}
+.navbar .nav-link {
+  color: #E74646;
+  padding: 0px;
+}
+.footer {
+  background-color: #FA9884 !important;
+}
