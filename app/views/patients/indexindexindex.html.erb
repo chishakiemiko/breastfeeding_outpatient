@@ -1,0 +1,93 @@
+
+<div>
+ <%= link_to '#', data: { turbolinks: false } do %>
+  <%= image_tag 'koharu.png', class: 'img-fluid', width: '180px' %>
+ <% end %>
+ </div>
+        
+<body class="h-100">
+  <nav class="navbar navbar-expand-lg my-1" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="" width="260" height="80">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">ログアウト</a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="btn btn-danger mx-1">患者を新規登録</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </nav>
+  
+  <hr>
+  
+ <!-- <div class="patient_list vh-100 d-flex aling-items-center" id="home"> -->
+
+    <div class="container-fluid m-5">
+      <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block me-3 sidebar collapse">
+        <!-- <div class="col-lg-3 my-5"> -->
+        <section id="side_bar" class="pt-5">
+          <h6 class="">患者一覧のサイドバー</h6>
+              <form class="d-flex" role="search">
+                <input type="search" class="form-control" placeholder="検索..." aria-label="検索...">
+              </form>
+                  <div class="my-2">
+                      <h5>カレンダー</h5>
+                      <iframe src="https://calendar.google.com/calendar/embed?src=chishakiemiko%40gmail.com&ctz=Asia%2FTokyo" style="border: 0" width="200" height="400" frameborder="0" scrolling="no"></iframe>
+                      
+                  </div>
+                  </section>
+                  </nav>
+          <div class="col-lg-9 p-5 border border-danger text-center">
+            <h1 class="paitiant_list_title my-3">患者一覧</h1>
+             
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">氏名</th>
+                  <th scope="col">カタカナ</th>
+                  <th scope="col">生年月日</th>
+                  <th scope="col">電話番号</th>
+                </tr>
+              </thead>
+              <tbody>
+                 <% @patients.each do |patient| %>   
+                  <tr>
+                    <th scope="row"><%= patient.patient_id_number %></th>
+                    <td><%=  patient.patient_first_name %><%= patient.patient_last_name %> </td>
+                    <td><%=  patient.patient_first_name_katakana %><%= patient.patient_last_name_katakana %></td>
+                    <td><%=  patient.patietn_birth_date %></td>
+                    <td><%=  patient.patient_phone_number %></td>
+                  </tr>
+                 <% end %>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+
+    
+<!-- footer -->
+<footer class="footer mt-4 py-3 bg-#FFF3E">
+  <div class="container text-center">
+    <span class="text-muted">©2023 outpatient_breastfeeding All rights reserved.</span>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  
+</body>

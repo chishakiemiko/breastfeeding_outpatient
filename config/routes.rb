@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :tops, only: :index
+  root 'patients#index'
   resources :patients
     
     

@@ -1,0 +1,212 @@
+<h1>基本情報</h1>
+
+<%= form_with(model: @patient, local: true) do |form| %>
+  
+  <div>
+    <%= form.label :patient_id_number, "患者ID" %>
+    <%= form.text_field :patient_id_number %>
+  </div>
+  <div>
+    <%= form.label :patient_fitrst_name, "姓" %>
+    <%= form.text_field :patient_first_name %>
+  </div>
+  <div>
+    <%= form.label :patient_last_name, "名" %>
+    <%= form.text_field :patient_last_name %>
+  </div>
+  <div>
+    <%= form.label :patient_first_name_katakana , "姓カタカナ" %>
+    <%= form.text_field :patient_first_name_katakana  %>
+  </div>
+  <div>
+    <%= form.label :patient_last_name_katakana , "名カタカナ" %>
+    <%= form.text_field :patient_last_name_katakana  %>
+  </div>
+  <div>
+    <%= form.label :patient_adress , "住所" %>
+    <%= form.text_field :patient_adress  %>
+  </div>
+  <div>
+    <%= form.label :patient_phone_number , "電話番号" %>
+    <%= form.text_field :patient_phone_number  %>
+  </div>
+  <div>
+    <%= form.label :patient_birth_date , "生年月日" %>
+    <%= form.date_select :patient_birth_date,{ use_month_numbers:true, start_year: 1975, end_year: 2010, default:{ year:1990 }}  %>
+  </div>
+   <div>
+    <%= form.label :patient_age , "年齢" %>
+    <%= form.text_field :patient_age  %>
+  </div>
+  <div>
+    <%= form.label :patient_occuation, "職業" %>
+    <%= form.select :patient_occuation, [["主婦",1], ["会社員",2], ["自営業",3], ["医療従事者",3], ["公務員",4], ["学生",5], ["その他",6]], prompt: "選択してください", class: "h" %>
+  </div>
+    <div class=”field”>
+      <%= form.label :childcare_collaborator, "育児協力者(複数選択可)" %>
+      <% ["夫","実親","義親","兄弟姉妹","友人","その他","なし"].each do |childcare_collaborator| %>
+      <%= form.check_box :childcare_collaborator, {multiple: true}, childcare_collaborator, nil %>
+      <%= childcare_collaborator %>
+      <% end %>
+    </div>  
+  <div>
+    <%= form.label :delivery_date , "分娩日" %>
+    <%= form.date_select :delivery_date,{ use_month_numbers:true, start_year: 2015, end_year: 2023, default:{ year:2023 }}  %>
+  </div>
+  <div>
+    <%= form.label :place_of_delivery, "分娩場所" %>
+    <%= form.text_field :place_of_delivery %>
+  </div>
+  <div>
+    <%= form.label :mode_of_delivery, "分娩様式" %>
+    <%= form.select :mode_of_delivery, [["正常",1], ["吸引",2], ["鉗子",3], ["予定帝王切開",4], ["緊急帝王切開",5]], prompt: "選択してください", class: "h" %>
+  </div>
+  <div>
+    <%= form.label :mode_of_delivery_reasons , "分娩様式理由(吸引、鉗子、緊急帝王切開)" %>
+    <%= form.select :mode_of_delivery_reasons, [["NRFS",1], ["分娩遷延",2], ["分娩停止",3], ["その他",4]], prompt: "選択してください", class: "h" %>
+  </div>
+  <div>
+    <%= form.label :calving_weeks , "分娩週数" %>
+    <%= form.text_field :calving_weeks  %>
+  </div>
+  <div>
+    <%= form.label :delivery_time , "分娩所要時間" %>
+    <%= form.text_field :delivery_time  %>
+  </div>
+  <div>
+    <%= form.label :amount_of_bleeding , "分娩時出血量" %>
+    <%= form.text_field :amount_of_bleeding %>
+  </div>
+  <div>
+    <%= form.label :pregnancy_progress_this_time , "妊娠の経過" %>
+    <%= form.select :pregnancy_progress_this_time, [["異常なし",1], ["切迫流早産",2], ["妊娠高血圧症候群",3], ["妊娠糖尿病",4], ["貧血",5], ["不妊治療",6], ["その他",7]], prompt: "選択してください", class: "h" %> 
+  </div>
+  <div>
+    <%= form.label :current_medication, "現在服用している薬" %>
+    <%= form.text_field :current_medication %>
+  </div>
+  <div>
+    <%= form.label :allergy , "アレルギー" %>
+    <%= form.select :allergy, [["なし",1], ["アトピー",2], ["花粉症",3], ["接触生皮膚炎",4], ["その他",5]], prompt: "選択してください", class: "h" %> 
+  </div>
+  <div>
+    <%= form.label :delivery_history , "分娩歴" %>
+    <%= form.select :delivery_history, [["初産",1], ["お二人目",2], ["三人目",3], ["その他",4]], prompt: "選択してください", class: "h" %>  
+  </div>
+  <div>
+    <%= form.label :breast_trouble, "乳房トラブル歴" %>
+    <%= form.radio_button :breast_trouble, :true %>
+    <%= form.label :breast_trouble, "あり", {value: :true, style: "display: inline-block;"} %>
+    <%= form.radio_button :breast_trouble, :false %>
+    <%= form.label :breast_trouble, "なし", {value: :false, style: "display: inline-block;"} %>
+  </div>
+  <div　class="">
+    <h5>妊娠中の乳房状態</h5>
+  </div>
+  <div>
+    <%= form.label :left_right_difference_in_breast_size_before_pregnancy , "妊娠前の乳房の左右差" %>
+    <%= form.select :left_right_difference_in_breast_size_before_pregnancy, [["なし",1], ["右　＜　左",2], ["右　＞　左",3], ["わからない",4]], prompt: "選択してください", class: "h" %> 
+  </div>
+  <div>
+    <%= form.label :breast_changes_during_pregnancy , "妊娠中の乳房の変化" %>
+    <%= form.select :breast_changes_during_pregnancy, [["なし",1], ["あり：初期",2], ["あり：中期",3], ["あり：後期",4]], prompt: "選択してください", class: "h" %>
+  </div>
+  <div>
+    <%= form.label :breast_care , "妊娠中の乳房のケア" %>
+    <%= form.radio_button :breast_care, :true %>
+    <%= form.label :breast_care, "した", {value: :true, style: "display: inline-block;"} %>
+    <%= form.radio_button :breast_care, :false %>
+    <%= form.label :breast_care, "していない", {value: :false, style: "display: inline-block;"} %>
+  </div>
+  <div>
+    <%= form.label :postpartum_breast_condition , "妊娠中の乳房ケア方法" %>
+    <%= form.text_field :postpartum_breast_condition %>
+  </div>
+  <div>
+    <%= form.label :breast_engorgement, "乳房緊満" %>
+    <%= form.select :breast_engorgement, [["1日目",1], ["2日目",2], ["3日目",3], ["4日目",4], ["５日目",5],["6日目以降",5],["なし",5]], prompt: "選択してください", class: "h" %> 
+  </div>
+  <div>
+    <%= form.label :degree_of_breast_engorgement , "乳房緊満の程度" %>
+    <%= form.select :degree_of_breast_engorgement, [["少し",1], ["あり",2], ["強い（ガチガチ）",3], ["なし",4]], prompt: "選択してください", class: "h" %> 
+  </div>
+  <div>
+    <%= form.label :breast_milk_amount_during_hospitalization, "入院中の母乳量" %>
+    <%= form.text_field :breast_milk_amount_during_hospitalization %>
+  </div>
+  <div>
+    <%= form.label :breastfeeding_awareness, "母乳育児への意識" %>
+    <%= form.select :breastfeeding_awareness, [["完全母乳",1], ["できるだけ母乳",2], ["混合(母乳寄り)",3], ["混合（ミルク寄り）",4], ["その他",5]], prompt: "選択してください", class: "h" %>
+  </div>
+  <div　class="">
+    <h5>お子さんについて</h5>
+  </div>
+  <div>
+    <%= form.label :childs_name , "お子様のお名前" %>
+    <%= form.text_field :childs_name  %>
+  </div>
+  <div>
+    <%= form.label :gender , "性別" %>
+    <%= form.radio_button :gender, :male %>
+    <%= form.label :genger, "男", {value: :male, style: "display: inline-block;"} %>
+    <%= form.radio_button :genger, :false %>
+    <%= form.label :genger, "女", {value: :female, style: "display: inline-block;"} %>
+  </div>
+  <div>
+    <%= form.label :birth_weight , "出生時の体重" %>
+    <%= form.text_field :birth_weight  %>
+  </div>
+  <div>
+    <%= form.label :weight_loss_rate , "体重減少率" %>
+    <%= form.text_field :weight_loss_rate  %>
+  </div>
+  <div>
+    <%= form.label :weight_at_discharge, "退院時の体重" %>
+    <%= form.text_field :weight_at_discharge %>
+  </div>
+  <div>
+    <%= form.label :weight_at_one_month_checkup , "1ヶ月健診の体重" %>
+    <%= form.text_field :weight_at_one_month_checkup  %>
+  </div>
+  <div>
+    <%= form.label :weight_at_the_three_month_checkup , "３ヶ月健診の体重" %>
+    <%= form.text_field :weight_at_the_three_month_checkup  %>
+  </div>
+  <div>
+    <%= form.label :weigtt_at_the_six_months_checkup , "６ヶ月健診の体重" %>
+    <%= form.text_field :weigtt_at_the_six_months_checkup  %>
+  </div>
+  
+  <div>
+    <%= form.label :stiff_shoulder, "肩こり" %>
+    <%= form.radio_button :stiff_shoulder, :true %>
+    <%= form.label :stiff_shoulder, "あり", {value: :true, style: "display: inline-block;"} %>
+    <%= form.radio_button :stiff_shoulder, :false %>
+    <%= form.label :stiff_shoulder, "なし", {value: :false, style: "display: inline-block;"} %>
+  </div>
+  <div>
+    <%= form.label :low_back_pain, "腰痛" %>
+    <%= form.radio_button :low_back_pain, :true %>
+    <%= form.label :low_back_pain, "あり", {value: :true, style: "display: inline-block;"} %>
+    <%= form.radio_button :low_back_pain, :false %>
+    <%= form.label :low_back_pain, "なし", {value: :false, style: "display: inline-block;"} %>
+  </div>
+   <div class=”field”>
+      <%= form.label :pre_existing_disease, "既往症(複数選択可)" %>
+      <% ["なし","心臓血管系","腎臓","肝臓","甲状腺","貧血","自己免疫疾患","高血圧","糖尿病","喘息","てんかん、けいれん","悪性腫瘍","外傷","婦人科","その他"].each do |pre_existing_disease| %>
+      <%= form.check_box :pre_existing_disease, {multiple: true}, pre_existing_disease, nil %>
+      <%= pre_existing_disease %>
+      <% end %>
+    </div>  
+   <div class=”field”>
+      <%= form.label :infectious_disease, "妊婦健診で指摘された感染症（複数選択可）" %>
+      <% ["なし","B型肝炎","C型肝炎","梅毒","HIV","GBS","その他"].each do |infectious_disease| %>
+      <%= form.check_box :infectious_disease, {multiple: true}, infectious_disease, nil %>
+      <%= infectious_disease %>
+      <% end %>
+    </div>
+
+  <div>
+    <%= form.submit "登録" %>
+  </div>
+<% end %>
