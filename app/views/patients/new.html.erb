@@ -1,0 +1,255 @@
+<%= render 'layouts/errors'%>
+  <div class="container-fluid m-5">
+     <div class="row">
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block me-3 sidebar collapse h-100">
+        <section id="side_bar" class="pt-0 text-center">
+          <nav class="m-2 p-1 border border-danger">
+          <h6 class="">患者一覧</h6>
+              <form class="d-flex" role="search">
+                <input type="search" class="form-control" placeholder="検索..." aria-label="検索...">
+              </form>
+           <div class="my-2 p-1 border border-danger">
+              <h5>カレンダー</h5>
+                <iframe src="https://calendar.google.com/calendar/embed?src=chishakiemiko%40gmail.com&ctz=Asia%2FTokyo" style="border: 0" width="160" height="300" frameborder="1" scrolling="no"></iframe>
+            </div>
+         </nav>
+        </section>
+      </nav>
+
+          <div class="col-lg-9 p-5  border border-danger">
+            <h2 class="paitiant_list_title">患者基本情報</h2>
+ 
+            <%= form_with(model: @patient, local: true) do |form| %>
+              <div class ="row">
+                <div class="field mb-2">
+                  <%= form.label :patient_id_number, "患者ID" %>
+                  <%= form.number_field :patient_id_number, min: 2023001 ,class: 'form-control' %>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-sm">
+                    <%= form.label :patient_fitrst_name, "姓" %>
+                    <%= form.text_field :patient_first_name,class: 'form-control' %>
+                  </div>
+                  <div class="col-sm">
+                    <%= form.label :patient_last_name, "名" %>
+                    <%= form.text_field :patient_last_name,class: 'form-control ' %>
+                  </div>
+                </div>
+                <div class="row mb-2">
+                  <div class="col-sm">
+                    <%= form.label :patient_first_name_katakana , "姓:カタカナ(全角)" %>
+                    <%= form.text_field :patient_first_name_katakana,class: 'form-control'  %>
+                  </div>
+                  <div class="col-sm">
+                    <%= form.label :patient_last_name_katakana , "名:カタカナ(全角)" %>
+                    <%= form.text_field :patient_last_name_katakana,class: 'form-control'  %>
+                  </div>
+                </div>
+                <div class="form_group mb-2">
+                  <%= form.label :patient_adress , "住所" %>
+                  <%= form.text_field :patient_adress,class: 'form-control'  %>
+                </div>
+                <div class="form_group mb-3">
+                  <%= form.label :patient_phone_number , "電話番号(ハイフン不要)" %>
+                  <%= form.telephone_field :patient_phone_number,class: 'form-control'  %>
+                </div>
+                <div class ="row mb-3">
+                  <div class="col">
+                    <%= form.label :patient_birth_date , "生年月日" %>
+                      <div class ="form-inline">
+                        <%= form.date_select :patient_birth_date,{ use_month_numbers:true, start_year: 1975, end_year: 2010, default:{ year:1990 }}, class: 'form-control'  %>
+                      </div>
+                  </div>
+                   <div class="col">
+                    <%= form.label :patient_age , "年齢" %>
+                    <%= form.number_field :patient_age ,class: 'form-control' %>
+                  </div>
+                </div>
+                <div class="col form-group mb-3">
+                  <%= form.label :patient_occuation, "職業" %>
+                  <%= form.select :patient_occuation, [["主婦","主婦"], ["会社員","会社員"], ["自営業","自営業"], ["医療従事者","医療従事者"], ["公務員","公務員"], ["学生","学生"], ["その他","その他"]], prompt: "選択してください", class: 'form-select' %>
+                </div>
+                  <div class="form-check mb-3">
+                    <%= form.label :childcare_collaborator, "育児協力者(複数選択可)" %>
+                      <div class="form-check">
+                        <% ["夫","実親","義親","兄弟姉妹","友人","その他","なし"].each do |childcare_collaborator| %>
+                        <%= form.check_box :childcare_collaborator, {multiple: true}, childcare_collaborator, nil %>
+                        <%= childcare_collaborator %>
+                        <% end %>
+                      </div>
+                  </div>  
+                <div class="col mb-3 form-group form-inline">
+                  <%= form.label :delivery_date , "分娩日" %>
+                  <%= form.date_select :delivery_date,{ use_month_numbers:true, start_year: 2015, end_year: 2023, default:{ year:2023 }} ,class: 'form-control mb-1' %>
+                </div>
+                <div class="form-group mb-3">
+                  <%= form.label :place_of_delivery, "分娩場所" %>
+                  <%= form.text_field :place_of_delivery,class: 'form-control' %>
+                </div>
+                <div class="form-group mb-3">
+                  <%= form.label :mode_of_delivery, "分娩様式" %>
+                  <%= form.select :mode_of_delivery, [["正常","正常"], ["吸引","吸引"], ["鉗子","鉗子"], ["予定帝王切開","予定帝王切開"], ["緊急帝王切開","予定帝王切開"]], prompt: "選択してください", class: 'form-select mb-2' %>
+                </div>
+                <div class="form-group mb-3">
+                  <%= form.label :mode_of_delivery_reasons , "分娩様式理由(吸引、鉗子、緊急帝王切開の場合)" %>
+                  <%= form.select :mode_of_delivery_reasons, [["NRFS","NRFS"], ["分娩遷延","分娩遷延"], ["分娩停止","分娩停止"], ["その他","その他"]], prompt: "選択してください" ,class: 'form-select mb-2' %>
+                </div>
+                <div class="mb-3 form-group form-inline ">
+                  <%= "分娩週数"%>
+                  <%= form.number_field :calving_weeks, in: 22..42 ,class: 'form-control mb-1'  %>
+                  <%= form.label :calving_weeks , "週" , {style: "display: inline-block;"}%>
+                  <%= form.number_field :calving_days, in: 0..6 ,class: 'form-control mb-1' %>
+                  <%= form.label :calving_days , "日",  {style: "display: inline-block;"} %>
+                </div>
+                <div class="form-group form-inline">
+                  <%= "分娩所要時間" %>
+                  <%= form.number_field :delivery_time ,class: 'form-control' %>
+                  <%= form.label :delivery_time , "時間", {style: "display: inline-block;"} %>
+                  <%= form.number_field :delivery_minutes, in: 0..59 ,class: 'form-control'  %>
+                  <%= form.label :delivery_minutes , "分",  {style: "display: inline-block;"} %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :amount_of_bleeding , "分娩時出血量" %>
+                  <%= form.number_field :amount_of_bleeding ,class: 'form-control mb-1' %>
+                </div>
+                <div class="form-group">
+                    <%= form.label :pregnancy_progress_this_time , "妊娠の経過(複数選択可)", class: 'me-2' %>
+                      <div class = "form-check mt-1">
+                      <% ["異常なし","切迫流早産", "妊娠高血圧症候群","妊娠糖尿病","貧血","不妊治療","その他"].each do | pregnancy_progress_this_time | %>
+                      <%= form.check_box :pregnancy_progress_this_time , {multiple: true}, pregnancy_progress_this_time , nil %>
+                      <%= pregnancy_progress_this_time %>
+                      <% end %>
+                      </div>
+                  </div>
+                <div class="form-group">
+                  <%= form.label :current_medication, "現在服用している薬" %>
+                  <%= form.text_field :current_medication ,class: 'form-control mb-1'%>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :allergy , "アレルギー" %>
+                  <%= form.select :allergy, [["なし","なし"], ["アトピー","アトピー"], ["花粉症","花粉症"], ["接触性皮膚炎","接触性皮膚炎"], ["その他","その他"]], prompt: "選択してください" ,class: 'form-select ms-2'%> 
+                </div>
+                <div class="form-group">
+                  <%= form.label :delivery_history , "分娩歴" %>
+                  <%= form.select :delivery_history, [["初産","初産"], ["お二人目","お二人目"], ["三人目","三人目"], ["その他","その他"]], prompt: "選択してください",class: 'form-select ms-3' %>  
+                </div>
+                <div class="form-group mb-4">
+                  <%= form.label :breast_trouble, "乳房トラブル歴" ,class: 'me-2'%>
+                  <%= form.label :breast_trouble, "あり", {value: "あり", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_trouble, "あり" ,class: 'me-2' %>
+                  <%= form.label :breast_trouble, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_trouble, "なし" %>
+                </div>
+                <h5 class="mb-3"><妊娠中の乳房状態></h5>
+                <div class="form-group mb-2">
+                  <%= form.label :left_right_difference_in_breast_size_before_pregnancy , "妊娠前の乳房の大きさの左右差" %>
+                  <%= form.select :left_right_difference_in_breast_size_before_pregnancy, [["なし","なし"], ["右　＜　左","右　＜　左"], ["右　＞　左","右　＞　左"], ["わからない","わからない"]], prompt: "選択してください",class: 'form-select mb-2' %> 
+                </div>
+                <div class="form-group mb-2">
+                  <%= form.label :breast_changes_during_pregnancy , "妊娠中の乳房の変化を感じましたか？" %>
+                  <%= form.select :breast_changes_during_pregnancy, [["なし","なし"], ["あり：初期","あり：初期"], ["あり：中期","あり：中期"], ["あり：後期","あり：後期"]], prompt: "選択してください", class: "form-select" %>
+                </div>
+                <div class="form-group mb-2">
+                  <%= form.label :breast_care , "妊娠中の乳房のケア" ,class: 'me-2' %>
+                  <%= form.label :breast_care, "した", {style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_care, "した" ,class: 'mx-2'%>
+                  <%= form.label :breast_care, "していない", {style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_care, "していない"  %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :postpartum_breast_condition , "妊娠中の乳房ケア方法" %>
+                  <%= form.text_field :postpartum_breast_condition ,class: 'form-control mb-1'%>
+                </div>
+                <div class="form-group mb-2">
+                  <%= form.label :breast_engorgement, "乳房緊満" %>
+                  <%= form.select :breast_engorgement, [["1日目",], ["2日目",], ["3日目",], ["4日目",], ["５日目",],["6日目以降",],["なし",]], prompt: "選択してください", class: "form-select" %> 
+                </div>
+                <div class="form-group mb-2">
+                  <%= form.label :degree_of_breast_engorgement , "乳房緊満の程度" %>
+                  <%= form.select :degree_of_breast_engorgement, [["少し",], ["あり",], ["強い（ガチガチ）",], ["なし",]], prompt: "選択してください", class: "form-select" %> 
+                </div>
+                <div class="form-group">
+                  <%= form.label :breast_milk_amount_during_hospitalization, "入院中の母乳量" %>
+                  <%= form.number_field :breast_milk_amount_during_hospitalization, class: 'form-control mb-1' %>
+                </div>
+                <div class="form-group mb-2">
+                  <%= form.label :breastfeeding_awareness, "母乳育児への意識" %>
+                  <%= form.select :breastfeeding_awareness, [["完全母乳","完全母乳"], ["できるだけ母乳","できるだけ母乳"], ["混合(母乳寄り)","混合(母乳寄り)"], ["混合（ミルク寄り）","混合（ミルク寄り）"], ["その他","その他"]], prompt: "選択してください" %>
+                </div>
+                  <h5><お子さんについて></h5>
+                <div class="form-group">
+                  <%= form.label :childs_name , "お子様のお名前" %>
+                  <%= form.text_field :childs_name ,class: 'form-control mb-1' %>
+                </div>
+                <div class="form-group">
+                  <%= form.label :gender , "性別" ,class: 'me-2'%>
+                  <%= form.label :gender, "男", {style: "display: inline-block;"} %>
+                  <%= form.radio_button :gender, "男", class: 'me-2'%>
+                  <%= form.label :gender, "女", {style: "display: inline-block;"} %>
+                  <%= form.radio_button :gender, "女" %>
+                </div>
+                <div class="field">
+                  <%= form.label :birth_weight , "出生時の体重(g)" %>
+                  <%= form.number_field :birth_weight,class: 'form-control mb-1'  %>
+                </div>
+                <div class="field">
+                  <%= form.label :weight_loss_rate , "体重減少率(%)" %>
+                  <%= form.number_field :weight_loss_rate ,class: 'form-control mb-1'%>
+                </div>
+                <div class="field">
+                  <%= form.label :weight_at_discharge, "退院時の体重(g)" %>
+                  <%= form.number_field :weight_at_discharge,class: 'form-control mb-1' %>
+                </div>
+                <div class="field">
+                  <%= form.label :weight_at_one_month_checkup , "1ヶ月健診の体重(g)" %>
+                  <%= form.number_field :weight_at_one_month_checkup,class: 'form-control mb-1' %>
+                </div>
+                <div class="field">
+                  <%= form.label :weight_at_the_three_month_checkup , "３ヶ月健診の体重" %>
+                  <%= form.number_field :weight_at_the_three_month_checkup,class: 'form-control mb-1' %>
+                </div>
+                <div class="field mb-3">
+                  <%= form.label :weigtt_at_the_six_months_checkup , "６ヶ月健診の体重" %>
+                  <%= form.number_field :weigtt_at_the_six_months_checkup,class: 'form-control mb-1'  %>
+                </div>
+                <h5 class="mb-２"><その他></h5>
+                <div class="form-group">
+                  <%= form.label :stiff_shoulder, "肩こり" ,class: 'me-2'%>
+                  <%= form.label :stiff_shoulder, "あり", { style: "display: inline-block;"} %>
+                  <%= form.radio_button :stiff_shoulder, "あり" ,class: 'me-2' %>
+                  <%= form.label :stiff_shoulder, "なし", { style: "display: inline-block;"} %>
+                  <%= form.radio_button :stiff_shoulder, "なし" %>
+                </div>
+                <div class="form_group mb-2">
+                  <%= form.label :low_back_pain, "腰痛", class: 'me-2' %>
+                  <%= form.label :low_back_pain, "あり", { style: "display: inline-block;"} %>
+                  <%= form.radio_button :low_back_pain, "あり",class: 'me-2' %>
+                  <%= form.label :low_back_pain, "なし", {　style: "display: inline-block;"} %>
+                  <%= form.radio_button :low_back_pain, "なし" %>
+                </div>
+                 <div class="form-group mb-3">
+                    <%= form.label :pre_existing_disease, "既往歴(複数選択可)", class: 'me-3' %>
+                      <div class="form-check">
+                        <% ["なし","心臓血管系","腎臓","肝臓","甲状腺","貧血","自己免疫疾患","高血圧","糖尿病","喘息","てんかん、けいれん","悪性腫瘍","外傷","婦人科","その他"].each do |pre_existing_disease| %>
+                        <%= form.check_box :pre_existing_disease, {multiple: true}, pre_existing_disease, nil %>
+                        <%= pre_existing_disease %>
+                        <% end %>
+                      </div>
+                  </div>  
+                 <div class="form-group mb-3">
+                    <%= form.label :infectious_disease, "妊婦健診で指摘された感染症（複数選択可）" %>
+                      <div class ="form-check">
+                        <% ["なし","B型肝炎","C型肝炎","梅毒","HIV","GBS","その他"].each do |infectious_disease| %>
+                        <%= form.check_box :infectious_disease, {multiple: true}, infectious_disease, nil %>
+                        <%= infectious_disease %>
+                        <% end %>
+                      </div>
+                </div>  
+                <div class="form-group">
+                  <%= form.submit "登録する" ,class: 'btn btn-danger mx-1' %>
+                </div>
+              </div>
+            <% end %>
+      </div>
+    </div>
+  </div>

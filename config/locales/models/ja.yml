@@ -1,0 +1,55 @@
+ ja:
+  activerecord:
+    models:
+      patient: 患者
+    attributes:
+      patient:
+        patient_id_number: id 
+        patient_occuation: 職業 
+        childcare_collaborator: 育児協力者
+        delivery_date: 分娩日
+        place_of_delivery: 分娩場所
+        mode_of_delivery: 分娩様式
+        mode_of_delivery_reasons: 分娩様式理由
+        calving_weeks: 分娩週
+        calving_days: 分娩日 
+        delivery_time: 分娩時間
+        delivery_minutes: 分娩分
+        amount_of_bleeding: 出血量 
+        pregnancy_progress_this_time: 今回の妊娠経過
+        current_medication: 現在内服している薬
+        allergy: アレルギー
+        deliveryhistory: 分娩歴 
+        breast_trouble: 乳房トラブル歴
+        breast_condition_during_pregnancy: 妊娠中の乳房状態
+        left_right_difference_in_breast_size_before_pregnancy: 妊娠前の乳房サイズの左右差
+        breast_changes_during_pregnancy: 妊娠中の乳房変化
+        breast_care: 妊娠中の乳房ケア
+        postpartum_breast_condition: 妊娠中の乳房ケア方法 
+        breast_engorgement: 乳房緊満
+        degree_of_breast_engorgement: 乳房緊満の程度 
+        breast_milk_amount_during_hospitalization: 入院中の母乳量
+        breastfeeding_awareness: 母乳意識
+        childs_name: お子さんのお名前
+        gender: お子さんの性別
+        birth_weight: 出生体重
+        weight_loss_rate: 体重減少率
+        weight_at_discharge: 退院時の体重
+        weight_at_one_month_checkup: １ヶ月健診の体重
+        weight_at_the_three_month_checkup: 3ヶ月健診の体重
+        weigtt_at_the_six_months_checkup: ６ヶ月健診の体重
+        chief_complaint: 主訴
+        age_in_months: １ヶ月健診
+        stiff_shoulder: 肩こり
+        low_back_pain: 腰痛
+        pre_existing_disease: 既往歴
+        infectious_disease: 妊婦健診で指摘された感染症
+        progress_of_visit: 来院歴
+        patient_last_name: 名字
+        patient_first_name: 名前
+        patient_age: 年齢
+        patient_last_name_katakana: 名前カタカナ
+        patient_first_name_katakana: 名字カタカナ
+        patient_adress: 住所
+        patient_phone_number: 電話番号
+                
