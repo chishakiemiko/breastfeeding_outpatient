@@ -99,11 +99,11 @@
                     <td><%= @patient.place_of_delivery %></td>
                   </tr>
                   <tr>
-                     <th scope="row">分娩様式</th>
+                    <th scope="row">分娩様式</th>
                     <td><%= @patient.mode_of_delivery %></td>
                   </tr> 
                   <tr>
-                     <th scope="row">分娩様式理由</th>
+                    <th scope="row">分娩様式理由</th>
                     <td><%= @patient.mode_of_delivery_reasons %></td>
                   </tr>  
                   <tr>
@@ -144,12 +144,12 @@
                   <tr>
                     <th scope="row">非妊時の乳房サイズの左右差</th>
                     <td><%= @patient.left_right_difference_in_breast_size_before_pregnancy %></td>
-                   </tr>
-                   <tr>
-                     <th scope="row">妊娠中の乳房変化</th>
-                     <td><%= @patient.breast_changes_during_pregnancy %></td>
-                   </tr>
-                   <tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">妊娠中の乳房変化</th>
+                    <td><%= @patient.breast_changes_during_pregnancy %></td>
+                  </tr>
+                  <tr>
                     <th scope="row">妊娠中のお手入れ</th>
                     <td><%= @patient.breast_care%></td>
                   </tr>
@@ -175,7 +175,6 @@
                   </tr>
                   <tr>
                     <th scope="row"><span>赤ちゃん情報</span></th>     
-                              
                   </tr>   
                   <tr>
                    <th scope="row">お名前</th>
@@ -193,10 +192,22 @@
                     <th scope="row">退院時体重</th>
                     <td><%= @patient.weight_at_discharge %>g</td>
                    </tr>
-                   <tr>
-                      <th scope="row">1ヶ月体重</th>
-                      <td>未</td>
+                  <tr>
+                    <th scope="row">体重減少率</th>
+                    <td><%= @patient.weight_at_discharge %>％</td>
                    </tr>
+                  <tr>
+                    <th scope="row">１ヶ月健診の体重</th>
+                    <td><%= @patient.weight_at_one_month_checkup %>g</td>
+                   </tr>
+                  <tr>
+                    <th scope="row">3ヶ月健診の体重</th>
+                    <td><%= @patient.weight_at_the_three_month_checkup %>g</td>
+                   </tr>
+                  <tr>
+                    <th scope="row">６ヶ月健診の体重</th>
+                    <td><%= @patient.weigtt_at_the_six_months_checkup %>g</td>
+                  </tr>
                    <tr>
                      <th scope="row"><span>その他</span></th>
                      <td></td>

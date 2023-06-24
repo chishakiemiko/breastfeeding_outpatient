@@ -1,54 +1,45 @@
 class PatientsController < ApplicationController
-    before_action :childcare_collaborator_string, only: [:create, :update] 
-    before_action :infectious_disease_string, only: [:create, :update] 
-    before_action :pre_existing_disease_string, only: [:create, :update] 
-    before_action :pregnancy_progress_this_time_string, only: [:create, :update] 
+  before_action :childcare_collaborator_string, only: [:create, :update] 
+  before_action :infectious_disease_string, only: [:create, :update] 
+  before_action :pre_existing_disease_string, only: [:create, :update] 
+  before_action :pregnancy_progress_this_time_string, only: [:create, :update] 
+  before_action :set_patient, only: [:show, :edit, :update]
   
-  
-    def index
-      @patients = Patient.all
-    end
+  def index
+    @patients = Patient.all
+  end
     
-    def show
-      @patient = Patient.find(params[:id])
-    end
+  def show
+  end
     
-    def new
-      @patient = Patient.new
-    end
+  def new
+    @patient = Patient.new
+  end
     
-    def create
-      @patient = Patient.new(patient_params) 
+  def create
+    @patient = Patient.new(patient_params) 
       if @patient.save
         redirect_to root_path, flash: {notice: "登録が完了しました."}
       else
         render :new
       end
-    end
+  end
 
-    def edit
-         @patient = Patient.find(params[:id])
-    end
+  def edit
+    # @patient = Patient.find(params[:id])
+  end
     
-    def update
-         @patient = Patient.find(params[:id])
-         
-        if @patient.update(patient_params)
-          redirect_to root_path, flash: {notice: "編集が完了しました."}
-        else
-          render :edit
-        end
-    end
-    def destroy
-         patient = Patient.find(params[:id])
-         patient.destroy
-         
-         redirect_to root_path, flash: {notice: "削除が完了しました."}
-    end
-    
-    
-    
-    private
+  def update
+    # @patient = Patient.find(params[:id])
+           
+      if @patient.update(patient_params)
+        redirect_to root_path, flash: {notice: "編集が完了しました."}
+      else
+        render :edit
+      end
+  end
+  
+  private
     
     
     
@@ -79,6 +70,10 @@ class PatientsController < ApplicationController
     
     def pregnancy_progress_this_time_string
       params[:patient][:pregnancy_progress_this_time] = params[:patient][:pregnancy_progress_this_time].join("/") 
+    end
+    
+    def set_patient
+     @patient = Patient.find(params[:id])
     end
 end
 

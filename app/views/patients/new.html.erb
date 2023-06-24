@@ -1,3 +1,4 @@
+<%= render 'layouts/errors'%>
   <div class="container-fluid m-5">
      <div class="row">
       <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block me-3 sidebar collapse h-100">
@@ -36,11 +37,11 @@
                 </div>
                 <div class="row mb-2">
                   <div class="col-sm">
-                    <%= form.label :patient_first_name_katakana , "姓:カタカナ" %>
+                    <%= form.label :patient_first_name_katakana , "姓:カタカナ(全角)" %>
                     <%= form.text_field :patient_first_name_katakana,class: 'form-control'  %>
                   </div>
                   <div class="col-sm">
-                    <%= form.label :patient_last_name_katakana , "名:カタカナ" %>
+                    <%= form.label :patient_last_name_katakana , "名:カタカナ(全角)" %>
                     <%= form.text_field :patient_last_name_katakana,class: 'form-control'  %>
                   </div>
                 </div>
@@ -49,7 +50,7 @@
                   <%= form.text_field :patient_adress,class: 'form-control'  %>
                 </div>
                 <div class="form_group mb-3">
-                  <%= form.label :patient_phone_number , "電話番号" %>
+                  <%= form.label :patient_phone_number , "電話番号(ハイフン不要)" %>
                   <%= form.telephone_field :patient_phone_number,class: 'form-control'  %>
                 </div>
                 <div class ="row mb-3">
@@ -61,7 +62,7 @@
                   </div>
                    <div class="col">
                     <%= form.label :patient_age , "年齢" %>
-                    <%= form.text_field :patient_age ,class: 'form-control' %>
+                    <%= form.number_field :patient_age ,class: 'form-control' %>
                   </div>
                 </div>
                 <div class="col form-group mb-3">
@@ -109,7 +110,7 @@
                 </div>
                 <div class="form-group">
                   <%= form.label :amount_of_bleeding , "分娩時出血量" %>
-                  <%= form.text_field :amount_of_bleeding ,class: 'form-control mb-1' %>
+                  <%= form.number_field :amount_of_bleeding ,class: 'form-control mb-1' %>
                 </div>
                 <div class="form-group">
                     <%= form.label :pregnancy_progress_this_time , "妊娠の経過(複数選択可)", class: 'me-2' %>
@@ -141,11 +142,11 @@
                 </div>
                 <h5 class="mb-3"><妊娠中の乳房状態></h5>
                 <div class="form-group mb-2">
-                  <%= form.label :left_right_difference_in_breast_size_before_pregnancy , "妊娠前の乳房の左右差" %>
+                  <%= form.label :left_right_difference_in_breast_size_before_pregnancy , "妊娠前の乳房の大きさの左右差" %>
                   <%= form.select :left_right_difference_in_breast_size_before_pregnancy, [["なし","なし"], ["右　＜　左","右　＜　左"], ["右　＞　左","右　＞　左"], ["わからない","わからない"]], prompt: "選択してください",class: 'form-select mb-2' %> 
                 </div>
                 <div class="form-group mb-2">
-                  <%= form.label :breast_changes_during_pregnancy , "妊娠中の乳房の変化" %>
+                  <%= form.label :breast_changes_during_pregnancy , "妊娠中の乳房の変化を感じましたか？" %>
                   <%= form.select :breast_changes_during_pregnancy, [["なし","なし"], ["あり：初期","あり：初期"], ["あり：中期","あり：中期"], ["あり：後期","あり：後期"]], prompt: "選択してください", class: "form-select" %>
                 </div>
                 <div class="form-group mb-2">
@@ -169,7 +170,7 @@
                 </div>
                 <div class="form-group">
                   <%= form.label :breast_milk_amount_during_hospitalization, "入院中の母乳量" %>
-                  <%= form.text_field :breast_milk_amount_during_hospitalization, class: 'form-control mb-1' %>
+                  <%= form.number_field :breast_milk_amount_during_hospitalization, class: 'form-control mb-1' %>
                 </div>
                 <div class="form-group mb-2">
                   <%= form.label :breastfeeding_awareness, "母乳育児への意識" %>
@@ -189,27 +190,27 @@
                 </div>
                 <div class="field">
                   <%= form.label :birth_weight , "出生時の体重(g)" %>
-                  <%= form.text_field :birth_weight,class: 'form-control mb-1'  %>
+                  <%= form.number_field :birth_weight,class: 'form-control mb-1'  %>
                 </div>
                 <div class="field">
                   <%= form.label :weight_loss_rate , "体重減少率(%)" %>
-                  <%= form.text_field :weight_loss_rate ,class: 'form-control mb-1'%>
+                  <%= form.number_field :weight_loss_rate ,class: 'form-control mb-1'%>
                 </div>
                 <div class="field">
                   <%= form.label :weight_at_discharge, "退院時の体重(g)" %>
-                  <%= form.text_field :weight_at_discharge,class: 'form-control mb-1' %>
+                  <%= form.number_field :weight_at_discharge,class: 'form-control mb-1' %>
                 </div>
                 <div class="field">
                   <%= form.label :weight_at_one_month_checkup , "1ヶ月健診の体重(g)" %>
-                  <%= form.text_field :weight_at_one_month_checkup,class: 'form-control mb-1' %>
+                  <%= form.number_field :weight_at_one_month_checkup,class: 'form-control mb-1' %>
                 </div>
                 <div class="field">
                   <%= form.label :weight_at_the_three_month_checkup , "３ヶ月健診の体重" %>
-                  <%= form.text_field :weight_at_the_three_month_checkup,class: 'form-control mb-1' %>
+                  <%= form.number_field :weight_at_the_three_month_checkup,class: 'form-control mb-1' %>
                 </div>
                 <div class="field mb-3">
                   <%= form.label :weigtt_at_the_six_months_checkup , "６ヶ月健診の体重" %>
-                  <%= form.text_field :weigtt_at_the_six_months_checkup,class: 'form-control mb-1'  %>
+                  <%= form.number_field :weigtt_at_the_six_months_checkup,class: 'form-control mb-1'  %>
                 </div>
                 <h5 class="mb-２"><その他></h5>
                 <div class="form-group">

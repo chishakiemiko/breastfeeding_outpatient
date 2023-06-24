@@ -4,7 +4,7 @@ class CreatePatients < ActiveRecord::Migration[6.1]
       t.integer :patient_id_number, null: false
       t.date :patient_birth_date, null: false
       t.string :patient_occuation 
-      t.text :childcare_collaborator 
+      t.text :childcare_collaborator
       t.date :delivery_date 
       t.string :place_of_delivery
       t.string :mode_of_delivery
@@ -14,7 +14,7 @@ class CreatePatients < ActiveRecord::Migration[6.1]
       t.integer :delivery_time 
       t.integer :delivery_minutes 
       t.integer :amount_of_bleeding 
-      t.text :pregnancy_progress_this_time 
+      t.text :pregnancy_progress_this_time
       t.string :current_medication
       t.string :allergy 
       t.string :delivery_history 
