@@ -26,17 +26,14 @@ class PatientsController < ApplicationController
   end
 
   def edit
-    # @patient = Patient.find(params[:id])
   end
     
   def update
-    # @patient = Patient.find(params[:id])
-           
-      if @patient.update(patient_params)
-        redirect_to root_path, flash: {notice: "編集が完了しました."}
-      else
-        render :edit
-      end
+    if @patient.update(patient_params)
+      redirect_to root_path, flash: {notice: "編集が完了しました."}
+    else
+      render :edit
+    end
   end
   
   private
