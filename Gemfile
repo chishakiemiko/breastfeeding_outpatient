@@ -17,6 +17,9 @@ gem 'font-awesome-sass'
 gem 'bootstrap', '~> 5.0'
 gem 'rails-i18n'
 
+# Auth Gems
+gem 'devise'
+
 group :development, :test do
   gem 'byebug', '11.1.3'
 end
