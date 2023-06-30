@@ -3,4 +3,7 @@ class Hospital < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         
+  validates :username, presence: true
+  mount_uploader :avatar, ImageUploader
 end

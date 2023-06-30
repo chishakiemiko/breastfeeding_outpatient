@@ -20,6 +20,9 @@ gem 'rails-i18n'
 # Auth Gems
 gem 'devise'
 
+# Image uploader
+gem 'carrierwave', '~> 2.0'
+
 group :development, :test do
   gem 'byebug', '11.1.3'
 end
