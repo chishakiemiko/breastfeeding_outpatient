@@ -7,9 +7,9 @@
       <%= form_with model: @hospital, url: session_path(@hospital), local: true do |f| %>
         <div class="div-title mb-4">
           <div class="text-start">
-            <%= f.label :username, 'username', class: 'title-p fw-bold text-main' %>
+            <%= f.label :email, 'email', class: 'title-p fw-bold text-main' %>
             <span class="p_required">必須</span>
-             <%= f.text_field :username, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3 ' %>
+             <%= f.text_field :email, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3 ' %>
           </div>
         </div>
         

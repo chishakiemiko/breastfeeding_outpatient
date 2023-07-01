@@ -4,6 +4,7 @@ class PatientsController < ApplicationController
   before_action :pre_existing_disease_string, only: [:create, :update] 
   before_action :pregnancy_progress_this_time_string, only: [:create, :update] 
   before_action :set_patient, only: [:show, :edit, :update]
+  before_action :authenticate_hospital!, only: [:new, :create, :show, :edit, :update]
   
   def index
     @patients = Patient.all
