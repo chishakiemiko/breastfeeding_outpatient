@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_29_173549) do
+ActiveRecord::Schema.define(version: 2023_07_01_211634) do
 
   create_table "hospitals", charset: "utf8mb4", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -75,6 +75,8 @@ ActiveRecord::Schema.define(version: 2023_06_29_173549) do
     t.string "patient_first_name_katakana", null: false
     t.string "patient_adress", null: false
     t.string "patient_phone_number", null: false
+    t.bigint "hospital_id"
+    t.index ["hospital_id"], name: "index_patients_on_hospital_id"
   end
 
 end

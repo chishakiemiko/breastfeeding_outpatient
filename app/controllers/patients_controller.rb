@@ -51,7 +51,7 @@ class PatientsController < ApplicationController
       # :stiff_shoulder, :low_back_pain, :pre_existing_disease,:progress_of_visit, :patient_last_name, :patient_first_name, :patient_adress,:patient_age,
       # :patient_last_name_katakana, :patient_first_name_katakana, :patient_phone_number, :patient_adress, 
       # childcare_collaborator: [], infectious_disease: [], pre_existing_disease: [], pregnancy_progress_this_time: [])
-        params.require(:patient).permit!
+        params.require(:patient).permit!.merge(hospital_id: current_hospital.id)
     end
     
     def childcare_collaborator_string

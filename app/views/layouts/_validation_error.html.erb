@@ -1,7 +1,7 @@
 <% if instance.errors.full_messages.present? %>
-  <ul class="form__error priority">
+  <ul class="alert alert-danger">
     <% instance.errors.full_messages.each do |msg| %>
-      <li class="form__error__item priority">
+      <li class="list-unstyled">
         <%= msg %>
       </li>
     <% end %>
