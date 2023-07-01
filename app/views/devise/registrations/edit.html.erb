@@ -1,29 +1,35 @@
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
 
 <div class="container">
   <div class="row d-flex border border-2 rounded-3 justify-content-center mt-5">
     <div class="col d-flex justify-content-center text-center mt-5">
       <div class="row d-flex justify-content-center">
         <div class="col-8 col-md-6">
+          <h2>Edit <%= resource_name.to_s.humanize %></h2>
+
           <%= form_with model: @hospital, url: hospital_registration_path, class: 'text-center mb-4', local: true do |f| %>
           <%#= render 'layouts/validation_error', instance: @hospital %>
-            <dic class="text-center m-2 p-4 rounded-3 bg-warning-subtle" method="post">
+            <div class="text-center m-2 p-4 rounded-3 bg-warning-subtle">
               <div class="div-title mb-4">
                 <div class="text-start">
                   <%= f.label :username, 'username', class: 'title-p fw-bold text-main' %>
                   <span class="p_required">必須</span>
                 </div>
-              <%= f.text_field :username, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3 ' %>
+                  <%= f.text_field :username, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3 ' %>
               </div> 
-               <div class="div-title mb-4">
+              <div class="div-title mb-4">
                 <div class="text-start">
                   <%= f.label :email, 'e-mail', class: 'title-p fw-bold text-main' %>
                   <span class="p_required">必須</span>
                 </div>
-                <%= f.email_field :email, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
+                  <%= f.email_field :email, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
               </div>
-               <div class="div-title mb-4">
+               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                  <div>Currently waiting confirmation for: <% resource.unconfirmed_email %></div>
+                <% end %>
+
+              <div class="div-title mb-4">
                 <div class="text-start">
                   <%= f.label :password, 'password', class: 'title-p fw-bold text-main' %>
                   <span class="p_required">必須</span>
@@ -31,14 +37,21 @@
                     <em>(<%= @minimum_password_length %> characters minimum)</em>
                     <% end %><br />
                 </div>
-                <%= f.password_field :password, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
+                  <%= f.password_field :password, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
               </div>
-               <div class="div-title mb-4">
-                   <div class="text-start">
+              <div class="div-title mb-4">
+                  <div class="text-start">
                     <%= f.label :password_confirmation, 'password_confirmation', class: 'title-p fw-bold text-main' %>
                     <span class="p_required">必須</span>
                   </div>
                   <%= f.password_field :password_confirmation, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
+                </div>
+              <div class="div-title mb-4">
+                  <div class="text-start">
+                    <%= f.label :current_password, 'current_password(we need your current password to confirm your changes)', class: 'title-p fw-bold text-main' %>
+                    <span class="p_required">必須</span>
+                  </div>
+                  <%= f.password_field :current_password, class: 'form-control py-md-3 rounded bg-white box-shadow mb-3' %>
                 </div>
                <div class="img-select">
                   <div class="text-start">
@@ -48,13 +61,14 @@
                   <%= f.file_field :avatar %>
                 </div>
                <div class="col-12 d-flex justify-content-center">
-                  <%= f.submit 'sign up', class: ' btn btn-danger w-100 d-block rounded fw-bold box-shadow mt-4 px-5 py-2 fs-6' %>
+                  <%= f.submit 'edit', class: ' btn btn-danger w-100 d-block rounded fw-bold box-shadow mt-4 px-5 py-2 fs-6' %>
                </div>
           <% end %>
         </div>
       </div>
     </div>
   </div>
+  <%= link_to "Back", :back %>
 </div>
 
 
@@ -98,46 +112,44 @@
 
 
 
-<!--<h2>Edit <%#= resource_name.to_s.humanize %></h2>-->
 
-<!--<%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>-->
-<!--  <#%= render "devise/shared/error_messages", resource: resource %>-->
+<%#= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
 
-<!--  <div class="field">-->
-<!--    <%#= f.label :email %><br />-->
-<!--    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>-->
-<!--  </div>-->
+  <!--<div class="field">-->
+    <%#= f.label :email %>
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  
 
-<!--  <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>-->
-<!--    <div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div>-->
-<!--  <%# end %>-->
+  <%# if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <!--<div>Currently waiting confirmation for: <#% resource.unconfirmed_email %></div>-->
+  <%# end %>
 
-<!--  <div class="field">-->
-<!--    <%#= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />-->
-<!--    <%#= f.password_field :password, autocomplete: "new-password" %>-->
-<!--    <#% if @minimum_password_length %>-->
-<!--      <br />-->
-<!--      <em><%#= @minimum_password_length %> characters minimum</em>-->
-<!--    <#% end %>-->
-<!--  </div>-->
+  <!--<div class="field">-->
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+    <%# if @minimum_password_length %>
+  <!--    <br />-->
+     
+    <%# end %>
+  <!--</div>-->
 
-<!--  <div class="field">-->
-<!--    <#%= f.label :password_confirmation %><br />-->
-<!--    <#%= f.password_field :password_confirmation, autocomplete: "new-password" %>-->
-<!--  </div>-->
+  <!--<div class="field">-->
+    <%#= f.label :password_confirmation %>
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <!--</div>-->
 
-<!--  <div class="field">-->
-<!--    <#%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />-->
-<!--    <#%= f.password_field :current_password, autocomplete: "current-password" %>-->
+  <!--<div class="field">-->
+  <!--  <%#= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />-->
+    <%#= f.password_field :current_password, autocomplete: "current-password" %>
 <!--  </div>-->
 
 <!--  <div class="actions">-->
-<!--    <%#= f.submit "Update" %>-->
+    <%#= f.submit "Update" %>
 <!--  </div>-->
-<!--<%# end %>-->
+<%# end %>
 
 <!--<h3>Cancel my account</h3>-->
 
-<!--<div>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>-->
+<div>Unhappy? <%#= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
-<!--<#%= link_to "Back", :back %>-->
+<!--<%#= link_to "Back", :back %>-->

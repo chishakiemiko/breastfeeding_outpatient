@@ -6,6 +6,7 @@
     <div class="col d-flex justify-content-center text-center mt-5">
       <div class="row d-flex justify-content-center">
         <div class="col-8 col-md-6">
+          <h2>Edit <%= resource_name.to_s.humanize %></h2>
           <%= form_with model: @hospital, url: hospital_registration_path, class: 'text-center mb-4', local: true do |f| %>
           <%#= render 'layouts/validation_error', instance: @hospital %>
             <dic class="text-center m-2 p-4 rounded-3 bg-warning-subtle" method="post">
