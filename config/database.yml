@@ -48,8 +48,14 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
+# production:
+#   <<: *default
+#   database: breastfeeding_outpatient_production
+#   username: breastfeeding_outpatient
+#   password: <%= ENV['BREASTFEEDING_OUTPATIENT_DATABASE_PASSWORD'] %>
+  
+  production:
   <<: *default
-  database: breastfeeding_outpatient_production
-  username: breastfeeding_outpatient
-  password: <%= ENV['BREASTFEEDING_OUTPATIENT_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  encoding: unicode
+  url: <%= ENV['DATABASE_URL'] %>
