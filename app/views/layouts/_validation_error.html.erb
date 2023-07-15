@@ -1,0 +1,9 @@
+<% if instance.errors.full_messages.present? %>
+  <ul class="alert alert-danger">
+    <% instance.errors.full_messages.each do |msg| %>
+      <li class="list-unstyled">
+        <%= msg %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

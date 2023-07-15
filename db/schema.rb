@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_17_073952) do
+ActiveRecord::Schema.define(version: 2023_07_01_211634) do
+
+  create_table "hospitals", charset: "utf8mb4", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "username", null: false
+    t.string "avatar"
+    t.index ["email"], name: "index_hospitals_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_hospitals_on_reset_password_token", unique: true
+  end
 
   create_table "patients", charset: "utf8mb4", force: :cascade do |t|
     t.integer "patient_id_number", null: false
@@ -61,6 +75,8 @@ ActiveRecord::Schema.define(version: 2023_06_17_073952) do
     t.string "patient_first_name_katakana", null: false
     t.string "patient_adress", null: false
     t.string "patient_phone_number", null: false
+    t.bigint "hospital_id"
+    t.index ["hospital_id"], name: "index_patients_on_hospital_id"
   end
 
 end
