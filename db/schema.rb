@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_06_17_073952) do
+ActiveRecord::Schema.define(version: 2023_07_08_080853) do
 
   create_table "patients", charset: "utf8mb4", force: :cascade do |t|
     t.integer "patient_id_number", null: false
@@ -63,4 +63,13 @@ ActiveRecord::Schema.define(version: 2023_06_17_073952) do
     t.string "patient_phone_number", null: false
   end
 
+  create_table "visit_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.date "visit_on"
+    t.bigint "patient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_visit_histories_on_patient_id"
+  end
+
+  add_foreign_key "visit_histories", "patients"
 end

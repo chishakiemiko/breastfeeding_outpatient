@@ -1,0 +1,8 @@
+<%= form_with model: @visit_history do |form| %>
+  <%= form.date_select :visit_on, default: { year: 2000, month: 1, day: 1 } %>
+  <br>
+  <%= form.collection_select(:patient_id, @patients, :id, :patient_last_name ) %>
+  <br>
+  
+  <%= form.submit '保存' %>
+<% end %>

@@ -1,0 +1,2 @@
+class VisitHistory < ApplicationRecord
+end
