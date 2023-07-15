@@ -149,11 +149,8 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
-<<<<<<< HEAD
     orm_adapter (0.5.0)
-=======
     pg (1.2.3)
->>>>>>> 01bf07a (add_postgresql_webpacker_bundleinstall)
     popper_js (2.11.7)
     public_suffix (5.0.1)
     puma (5.5.2)
@@ -200,14 +197,10 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-<<<<<<< HEAD
-    regexp_parser (2.8.0)
+    regexp_parser (2.8.1)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
-=======
-    regexp_parser (2.8.1)
->>>>>>> 51ecc82 (add_postgresql_webpacker_bundleinstall2)
     rexml (3.2.5)
     ruby-vips (2.1.4)
       ffi (~> 1.12)
@@ -244,13 +237,9 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-<<<<<<< HEAD
-    uri (0.12.1)
+    uri (0.12.2)
     warden (1.2.9)
       rack (>= 2.0.9)
-=======
-    uri (0.12.2)
->>>>>>> 51ecc82 (add_postgresql_webpacker_bundleinstall2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
