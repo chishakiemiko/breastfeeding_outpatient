@@ -1,14 +1,14 @@
 class BreastConditionsController < ApplicationController
   def index
-    @Breast_conditions = Breast_condition.all
+    @Breast_conditions = BreastCondition.all
   end
     
   def new
-    @breast_condition = Breast_condition.new
+    @breast_condition = BreastCondition.new
   end
   
   def create
-    @breast_condition = Breast_condition.new(post_params)
+    @breast_condition = BreastCondition.new(post_params)
       if @breast_conditio.save
         redirect_to root_path, flash: {notice: "登録が完了しました."}
       else
@@ -47,7 +47,7 @@ class BreastConditionsController < ApplicationController
     end
     
     def set_patient
-     @breast_condition = Breast_condition.find(params[:id])
+     @breast_condition = BreastCondition.find(params[:id])
     end
 end
 
