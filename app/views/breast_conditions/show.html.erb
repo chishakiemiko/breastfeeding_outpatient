@@ -13,8 +13,8 @@
         
               <nav class="m-2 p-1 border border-danger te">
                 <ul class="nav flex-column p-2">
-                   <p class="mb-0 pb-2">患者ID<%= @patient.patient_id_number %></p>
-                   <span class="pb-2"><%= @patient.patient_first_name %><%= @patient.patient_last_name %></span>
+                   <p class="mb-0 pb-2">患者ID<%#= @patient.patient_id_number %></p>
+                   <span class="pb-2"><%#= @patient.patient_first_name %><%#= @patient.patient_last_name %></span>
 
                     <li class="nav-item"><p><a href="#" class="nav-link text-danger">基本情報</a></p></li>
                     <li class="nav-item"><p><a href="#" class="nav-link text-danger">乳房状態</a></p></li>
@@ -40,11 +40,11 @@
           <div class="col-lg-9 p-5 border border-danger">
             <div class="row d-flex ">
               <div class="col-9">
-                <h2 class="paitiant_list_title my-3 text-center">患者基本情報</h2>
+                <h2 class="paitiant_list_title my-3 text-center">乳房状態</h2>
               </div>
               <div class="col-3">
                   <button type="button" class="btn btn-danger">
-                  <%= link_to "編集", edit_patient_path ,class: "text-white" %>
+                  <%= link_to "編集", edit_patient_breast_condition_path ,class: "text-white" %>
                   </button>
               </div>
             </div>
@@ -52,21 +52,31 @@
               <tbody>
                 <tr>
                   <td scope="row">患者ID</td>
-                  <td><%= @patient.patient_id_number %></td>
+                  <td><%= @breast_condition.patient.patient_id_number %></td>
                 </tr>
                 <tr>
-                  <td><%= @patient.patient_first_name_katakana %></td>
-                  <td><%= @patient.patient_last_name_katakana %></td>
+                  <td><%= @breast_condition.patient.patient_first_name_katakana %></td>
+                  <td><%= @breast_condition.patient.patient_last_name_katakana %></td>
                 </tr>
                 <tr>
-                  <td><%= @patient.patient_first_name %></td>
-                  <td><%= @patient.patient_last_name %></td>
+                  <td><%= @breast_condition.patient.patient_first_name %></td>
+                  <td><%= @breast_condition.patient.patient_last_name %></td>
                 </tr>
               </tbody>
             </table>
 
               <p class="">作成日</p>
-              <time><%= @patient.created_at.strftime('%Y.%-m.%d')%></time>
+              <time><%= @breast_condition.created_at.strftime('%Y.%-m.%d')%></time>
+              
+              <div class="border mt-3">
+              <h6><b>主訴</b></h6>
+                <p><%= @breast_condition.chief_complaint %></p>
+              </div>
+              <div class="border mt-3">
+                <h6><b>来院までの経過</b></h6>
+                <p><%= @breast_condition.progress_of_visit %>
+                </p>
+              </div>
 
               <table class="table table-bordered text-nowrap">
                 <tbody>
@@ -76,15 +86,10 @@
                   </tr>
                   <tr>
                     <th scope="row">乳房温かさ</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.udder_warmth_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.udder_warmth_left %></td>                   
+                    <td>
+                      右：（<%= @breast_condition.udder_warmth_right %>）
+                      左：（<%= @breast_condition.udder_warmth_left %>）
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">乳房サイズ左右差</th>
@@ -92,297 +97,177 @@
                   </tr>
                   <tr>
                     <th scope="row">緊満度</th>
-                    <td><%= @breast_condition. %></td>
+                    <td>
+                      右：（<%= @breast_condition.udder_tension_right %>）
+                      左：（<%= @breast_condition.udder_tension_left %>）
+                    </td>
                   </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.udder_tension_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.udder_tension_left %></td>
-                  </tr> 
                   <tr>
                     <th scope="row">副乳</th>
-                    <td><%#= @breast_condition. %></td>
+                    <td>
+                      右：<%= @breast_condition.sub_breast_right %>　
+                      左：<%= @breast_condition.sub_breast_left %>
+                    </td>
                   </tr>  
                   <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.sub_breast_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.sub_breast_left %></td>    
-                  </tr>
                     <th scope="row">体温</th>
-                    <td><%#= @breast_condition.%></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：右</th>
-                    <td><%= @breast_condition.right_body_temperature_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：左</th>
-                    <td><%=  @breast_condition.left_body_temperature_before_massage%></td>
-                  </tr>
- 　                <tr>
-                    <th scope="row">後：右</th>
-                    <td><%= @breast_condition.right_body_temperature_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：左</th>
-                    <td><%= @breast_condition.left_body_temperature_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳輪部</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">伸展長</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">マッサージ前</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.extension_length_before_massage_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.extension_length_before_massage_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">マッサージ後</th>
-                    <td><%#= @breast_condition. %></td>                       
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.extension_length_after_massage_right %></td>                      
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.extension_length_after_massage_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳輪サイズ</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右（たて✖️横）</th>
-                    <td><%= @breast_condition.nipple_warp_right %><%= @breast_condition.nipple_width_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.nipple_warp_left %><%= @breast_condition.nipple_width_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳輪色</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.nipple_color_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.nipple_color_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">伸展度</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：右</th>
-                    <td><%= @breast_condition.breast_extension_right_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：左</th>
-                    <td><%= @breast_condition.breast_extension_left_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：右</th>
-                    <td><%= @breast_condition.breast_extension_right_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：左</th>
-                    <td><%= @breast_condition.breast_extension_left_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳輪皮膚トラブル</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row"右></th>
-                    <td><%= @breast_condition.breast_skin_problems_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.breast_skin_problems_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳頭部について</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳頭長さ</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.length_of_right_teat %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.length_of_left_teat %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳頭形態</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.nipple_shape_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.nipple_shape_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳頭硬さ</th>
-                    <td><%#= @breast_condition. %>/td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.nipple_shape_right %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.nipple_shape_left %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">開口本数</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：右</th>
-                    <td><%= @breast_condition.number_of_right_teat_ducts_open_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：左</th>
-                    <td><%= @breast_condition.number_of_left_teat_ducts_open_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：右</th>
-                    <td><%= @breast_condition.number_of_right_teat_ducts_open_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：左</th>
-                    <td><%= @breast_condition.number_of_left_teat_ducts_open_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">開通本数</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：右</th>
-                    <td><%= @breast_condition.number_of_open_right_milk_ducts_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：左</th>
-                    <td><%= @breast_condition.number_of_open_left_milk_ducts_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：右</th>
-                    <td><%= @breast_condition.number_of_open_right_milk_ducts_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：左</th>
-                    <td><%= @breast_condition.number_of_open_left_milk_ducts_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">射乳本数</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：右</th>
-                    <td><%= @breast_condition.number_of_ejaculation_breasts_right_before_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">前：左</th>
-                    <td><%= @breast_condition.number_of_ejaculation_breasts_left_before_massag %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：右</th>
-                    <td><%= @breast_condition.number_of_ejaculated_right_breast_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">後：左</th>
-                    <td><%= @breast_condition.number_of_ejaculated_left_breast_after_massage %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳汁の性質</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.right_milk_properties %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.left_milk_properties %></td>
-                  <tr>
-                    <th scope="row">乳汁色</th>
                     <td></td>
                   </tr>
                   <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.milk_color_of_right_udder %></td>
+                    <th scope="row">マッサージ前</th>
+                    <td>
+                      右：<%= @breast_condition.right_body_temperature_before_massage %>℃　
+                      左：<%= @breast_condition.left_body_temperature_before_massage %>℃
+                    </td>
                   </tr>
                   <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.milk_color_of_left_udder %></td>
+                    <th scope="row">マッサージ後</th>
+                    <td>
+                      右：<%= @breast_condition.right_body_temperature_after_massage %>℃　
+                      左：<%= @breast_condition.left_body_temperature_after_massage %>℃
+                    </td>
+                  </tr>
                   </tr>
                   <tr>
-                    <th scope="row"></th>
-                    <td><%#= @breast_condition. %></td>
+                    <th scope="row">伸展長</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ前</th>
+                    <td>
+                      右：<%= @breast_condition.extension_length_before_massage_right %>cm　  
+                      左：<%= @breast_condition.extension_length_before_massage_left %>cm
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ後</th>
+                    <td>
+                      右：<%= @breast_condition.extension_length_after_massage_right %>cm　　 
+                      左：<%= @breast_condition.extension_length_after_massage_left %>cm
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳輪幅</th>
+                    <td>
+                      右：<%= @breast_condition.nipple_warp_right %>× <%= @breast_condition.nipple_width_right %>cm　
+                      左：<%= @breast_condition.nipple_warp_left %>× <%= @breast_condition.nipple_width_left %>cm
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳輪色</th>
+                    <td>
+                      右：<%= @breast_condition.nipple_color_right %>　 
+                      左：<%= @breast_condition.nipple_color_left %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">皮膚トラブル</th>
+                    <td>
+                      右：<%= @breast_condition.breast_skin_problems_right %>　
+                      左：<%= @breast_condition.breast_skin_problems_left %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳頭部について</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳頭長さ</th>
+                    <td>
+                      右：<%= @breast_condition.length_of_right_teat %>cm　　  
+                      左：<%= @breast_condition.length_of_left_teat %>cm
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳頭形態</th>
+                    <td>
+                      右：<%= @breast_condition.nipple_shape_right %>　 
+                      左：<%= @breast_condition.nipple_shape_left %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳頭硬さ</th>
+                    <td>
+                      右：<%= @breast_condition.hardness_of_right_teat %>　
+                      左：<%= @breast_condition.hardness_of_left_teat %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">開口本数</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ前</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_right_teat_ducts_open_before_massage %>本　
+                      左：<%= @breast_condition.number_of_left_teat_ducts_open_before_massage %>本
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ後</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_right_teat_ducts_open_after_massage %>本　
+                      左：<%= @breast_condition.number_of_left_teat_ducts_open_after_massage %>本
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">開通本数</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ前</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_open_right_milk_ducts_before_massage %>本　 
+                      左：<%= @breast_condition.number_of_open_left_milk_ducts_before_massage %>本
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ後</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_open_right_milk_ducts_after_massage %>本　 
+                      左：<%= @breast_condition.number_of_open_left_milk_ducts_after_massage %>本
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">射乳本数</th>
+                  </tr>
+                  <tr>
+                  <th scope="row">マッサージ前</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_ejaculation_breasts_right_before_massage %>本　
+                      左：<%= @breast_condition.number_of_ejaculation_breasts_left_before_massage %>本
+                    </td>
+                  </tr>
+                  <th scope="row">マッサージ後</th>
+                    <td>
+                      右：<%= @breast_condition.number_of_ejaculated_right_breast_after_massage %>本　
+                      左：<%= @breast_condition.number_of_ejaculated_left_breast_after_massage %>本
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳汁の性質</th>
+                    <td>
+                      右：<%= @breast_condition.right_milk_properties %>　
+                      左：<%= @breast_condition.left_milk_properties %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳汁色</th>
+                    <td>
+                      右：<%= @breast_condition.milk_color_of_right_udder %> 　
+                      左：<%= @breast_condition.milk_color_of_left_udder %>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">乳カス</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.right_milk_debris %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.left_milk_debris %></td>
+                    <td>
+                      右：<%= @breast_condition.right_milk_debris %>　
+                      左：<%= @breast_condition.left_milk_debris %>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">乳汁の温かさ</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.right_milk_temperature %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.left_milk_temperature %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">乳房ず</th>
-                    <td><%= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">授乳状況</th>
-                    <td><%= @breast_condition.udder_diagram %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">母乳意識</th>
-                    <td><%= @breast_condition. %></td>
+                    <td>
+                      右：<%= @breast_condition.right_milk_temperature %>　 
+                      左：<%= @breast_condition.left_milk_temperature %>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">授乳の状況</th>
@@ -390,19 +275,19 @@
                   </tr>
                   <tr>
                     <th scope="row">母乳回数</th>
-                    <td><%= @breast_condition.breastfeeding_times %></td>
+                    <td><%= @breast_condition.breastfeeding_times %>回/日</td>
                   </tr>
                   <tr>
                     <th scope="row">夜間授乳の回数</th>
-                    <td><%= @breast_condition.number_of_night_feedings %></td>
+                    <td><%= @breast_condition.number_of_night_feedings %>回/日</td>
                   </tr>
                   <tr>
                     <th scope="row">ミルクの回数</th>
-                    <td><%= @breast_condition.milk_count %></td>
+                    <td><%= @breast_condition.milk_count %>回/日</td>
                   </tr>
                   <tr>
                     <th scope="row">１回のミルクの量</th>
-                    <td><%= @breast_condition.one_serving_of_milk %></td>
+                    <td><%= @breast_condition.one_serving_of_milk %>ml/回</td>
                   </tr>
                   <tr>
                     <th scope="row">ミルクのタイミング</th>
@@ -410,11 +295,11 @@
                   </tr>
                   <tr>
                     <th scope="row">搾乳の回数</th>
-                    <td><%= @breast_condition.milking_frequency %></td>
+                    <td><%= @breast_condition.milking_frequency %>回/日</td>
                   </tr>
                   <tr>
                     <th scope="row">１回の搾乳にかかる時間</th>
-                    <td><%= @breast_condition.milking_time_required %></td>
+                    <td><%= @breast_condition.milking_time_required %>分</td>
                   </tr>
                   <tr>
                     <th scope="row">搾乳方法</th>
@@ -422,16 +307,10 @@
                   </tr>
                   <tr>
                     <th scope="row">抱き方</th>
-                    <td><%#= @breast_condition. %></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">右</th>
-                    <td><%= @breast_condition.breastfeeding_posture_right %></td>
-                  </tr>
-                  <tr>
-                  <tr>
-                    <th scope="row">左</th>
-                    <td><%= @breast_condition.breastfeeding_posture_left %></td>
+                    <td>
+                      右：<%= @breast_condition.breastfeeding_posture_right %> 
+                      左：<%= @breast_condition.breastfeeding_posture_left %>
+                    </td>
                   </tr>
                   <tr>
                     <th scope="row">離乳食</th>
@@ -454,31 +333,39 @@
                   </tr>
                   <tr>
                     <th scope="row">退院時体重</th>
-                    <td><%= @patient.weight_at_discharge %>g</td>
+                    <td><%= @breast_condition.patient.weight_at_discharge %>g</td>
                    </tr>
                   <tr>
                     <th scope="row">体重減少率</th>
-                    <td><%= @patient.weight_at_discharge %>％</td>
+                    <td><%= @breast_condition.patient.weight_at_discharge %>％</td>
                    </tr>
                   <tr>
                     <th scope="row">１ヶ月健診の体重</th>
-                    <td><%= @patient.weight_at_one_month_checkup %>g</td>
+                    <td><%= @breast_condition.patient.weight_at_one_month_checkup %>g</td>
                    </tr>
                   <tr>
                     <th scope="row">3ヶ月健診の体重</th>
-                    <td><%= @patient.weight_at_the_three_month_checkup %>g</td>
+                    <td><%= @breast_condition.patient.weight_at_the_three_month_checkup %>g</td>
                    </tr>
                   <tr>
                     <th scope="row">６ヶ月健診の体重</th>
-                    <td><%= @patient.weigtt_at_the_six_months_checkup %>g</td>
+                    <td><%= @breast_condition.patient.weigtt_at_the_six_months_checkup %>g</td>
                   </tr>
                    
                   </tbody>
                 </table>
+                <div class="border m-1">
+                  <h6>乳房図</h6>
+                  <%= image_tag @breast_condition.udder_diagram.url, size: '800x180' %>
+                </div>
+                    
+                                 
+                    
+  </div>
+                  
         </div>
       </div>
     </div>
 
 
 </body>
-</html>
