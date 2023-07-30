@@ -1,0 +1,2 @@
+class BreastCondition < ApplicationRecord
+end
