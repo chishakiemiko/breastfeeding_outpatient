@@ -40,8 +40,8 @@ class MedicalTreatmentsController < ApplicationController
   end
   
   private
-    def breast_condition_params
-        params.require(:breast_condition).permit! .merge(patient_id: params[:patient_id])
+    def medical_treatment_params
+        params.require(:medical_treatment).permit! .merge(patient_id: params[:patient_id])
     end
     # # def time_to_supplement_milk_string
     #   params[:breast_condition][:time_to_supplement_milk] = params[:breast_condition][:time_to_supplement_milk].join(“/”)

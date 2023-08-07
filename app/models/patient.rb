@@ -1,5 +1,6 @@
 class Patient < ApplicationRecord
     belongs_to :hospital
+    has_many :medical_conditions
     
     validates :patient_id_number, :patient_birth_date, :patient_last_name,
     :patient_first_name, :patient_age, :patient_last_name_katakana, :patient_first_name_katakana, 

@@ -17,611 +17,232 @@
       </nav>
 
           <div class="col-lg-9 p-5  border border-danger">
-            <h2 class="paitiant_list_title">乳房状態</h2>
+            <h2 class="paitiant_list_title">診療記録</h2>
  
-            <%= form_with(model: @breast_condition, local: true) do |form| %>
+            <%= form_with(model:[@patient,@medical_treatment], local: true) do |form| %>
               <div class ="row">
+                <h6>問題リスト</h6>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_1, "１" %>
+                    <%= form.text_field :problem_list_1, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_2, "２" %>
+                    <%= form.text_field :problem_list_2, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_3, "３" %>
+                    <%= form.text_field :problem_list_3, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_4, "４" %>
+                    <%= form.text_field :problem_list_4, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_5, "５" %>
+                    <%= form.text_field :problem_list_5, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :problem_list_6, "６" %>
+                    <%= form.text_field :problem_list_6, class: 'form-control', size: "60x5" %>
+                  </div>
+    
                 <div class="text_field mb-2">
-                  <%= form.label :chief_complaint, "主訴" %>
-                  <%= form.text_area :chief_complaint, class: 'form-control', size: "60x5" %>
+                  <%= form.label :root_problem, "根本問題" %>
+                  <%= form.text_field :root_problem, class: 'form-control', size:"60x10" %>
+                </div>
+                
                 <div class="text_field mb-2">
-                  <%= form.label :progress_of_visit, "来院までの経過" %>
-                  <%= form.text_area :progress_of_visit ,class: 'form-control', size:"60x10" %>
+                  <%= form.label :right_breast_condition, "乳房状態(右)" %>
+                  <%= form.text_area :right_breast_condition ,class: 'form-control', size:"60x10" %>
                 </div>
-                <hr>
-                <h5>乳房実質について</h5>
+                <div class="text_field mb-2">
+                  <%= form.label :left_breast_condition, "乳房状態(左)" %>
+                  <%= form.text_area :left_breast_condition ,class: 'form-control', size:"60x10" %>
+                </div>
+                <div class="text_field mb-2">
+                  <%= form.label :diagnosis_name, "診断名" %>
+                  <%= form.text_field :diagnosis_name ,class: 'form-control', size:"60x10" %>
+                </div>
                 <hr>
                   <div class="form-group mb-4">
-                  <%= form.label :breast_type, "乳房タイプ" ,class: 'me-2'%><br>
-                  <%= form.label :breast_type, "Ⅰ", {value: "Ⅰ", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breast_type, "Ⅰ" ,class: 'me-2' %>
-                  <%= form.label :breast_type, "Ⅱa", {value: "Ⅱa", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breast_type, "Ⅱa" %>
-                  <%= form.label :breast_type, "Ⅱb", {value: "Ⅱb", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breast_type, "Ⅱb" ,class: 'me-2' %>
-                  <%= form.label :breast_type, "Ⅲ", {value: "Ⅲ", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breast_type, "Ⅲ" %>
+                  <%= form.label :right_breast_lump, "右：手掌で圧して触れるしこり" ,class: 'me-2'%><br>
+                  <%= form.label :right_breast_lump, "あり", {value: "あり", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_breast_lump, "あり" ,class: 'me-2' %>
+                  <%= form.label :right_breast_lump, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_breast_lump, "なし" %>
+                </div>
+                
+                
+                <h5>本日のマッサージ計画</h5>
+                <hr>
+                  <div class="form-group mb-4">
+                  <%= form.label :foot_bath , "足浴" ,class: 'me-2'%><br>
+                  <%= form.label :foot_bath , "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :foot_bath , "なし" ,class: 'me-2' %>
+                  <%= form.label :foot_bath , "温", {value: "温", style: "display: inline-block;"} %>
+                  <%= form.radio_button :foot_bath , "温" %>
+                  <%= form.label :foot_bath , "温冷", {value: "温冷", style: "display: inline-block;"} %>
+                  <%= form.radio_button :foot_bath , "温冷" ,class: 'me-2' %>
                 </div>
                 <hr>
-                <h6>温かさ</h6>
+                  <div class="form-group mb-4">
+                  <%= form.label :shoulder_and_back_acupressure, "肩背指圧" ,class: 'me-2'%><br>
+                  <%= form.label :shoulder_and_back_acupressure, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :shoulder_and_back_acupressure, "なし" ,class: 'me-2' %>
+                  <%= form.label :shoulder_and_back_acupressure, "肩背", {value: "肩背", style: "display: inline-block;"} %>
+                  <%= form.radio_button :shoulder_and_back_acupressure, "肩背" %>
+                  <%= form.label :shoulder_and_back_acupressure, "座位肩背", {value: "座位肩背", style: "display: inline-block;"} %>
+                  <%= form.radio_button :shoulder_and_back_acupressure, "座位肩背" ,class: 'me-2' %>
+                </div>
+                <hr>
+                  <div class="form-group mb-4">
+                  <%= form.label :breast_massage, "乳房マッサージ" ,class: 'me-2'%><br>
+                  <%= form.label :breast_massage, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_massage, "なし" ,class: 'me-2' %>
+                  <%= form.label :breast_massage, "あり", {value: "あり", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_massage, "あり" %>
+                </div>
+                <hr>
+                  <div class="form-group mb-4">
+                  <%= form.label :breast_feeding, "授乳" ,class: 'me-2'%><br>
+                  <%= form.label :breast_feeding, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_feeding, "なし" ,class: 'me-2' %>
+                  <%= form.label :breast_feeding, "来院時にあり", {value: "来院時にあり", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_feeding, "来院時にあり" %>
+                  <%= form.label :breast_feeding, "整えてからあり", {value: "整えてからあり", style: "display: inline-block;"} %>
+                  <%= form.radio_button :breast_feeding, "整えてからあり" %>
+                </div>
+                <hr>
+               <!--<div class="form-group mb-4">-->
+               <!--   <%#= form.label :, "抱き方・吸わせ方" ,class: 'me-2'%><br>-->
+               <!--   <%#= form.label :, "確認不要", {value: "確認不要", style: "display: inline-block;"} %>-->
+               <!--   <%#= form.radio_button :, "確認不要" ,class: 'me-2' %>-->
+               <!--   <%#= form.label :, "要確認", {value: "要確認", style: "display: inline-block;"} %>-->
+               <!--   <%#= form.radio_button :, "要確認" %>-->
+               <!-- </div>-->
+               <!-- <hr>-->
+                  <div class="form-group mb-4">
+                  <%= form.label :necessity_of_protector, "保護器の必要性" ,class: 'me-2'%><br>
+                  <%= form.label :necessity_of_protector, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :necessity_of_protector, "なし" ,class: 'me-2' %>
+                  <%= form.label :necessity_of_protector, "メデラM", {value: "メデラM", style: "display: inline-block;"} %>
+                  <%= form.radio_button :necessity_of_protector, "メデラM" %>
+                  <%= form.label :necessity_of_protector, "メデラL", {value: "メデラM", style: "display: inline-block;"} %>
+                  <%= form.radio_button :necessity_of_protector, "メデラL" %>
+                </div>
+                <h6>マッサージ方法（具体的なマッサージの手技のやり方）</h6>
+                  <div class="text_field mb-2">
+                    <%= form.label :right_massage_method , "右" %>
+                    <%= form.text_field :right_massage_method , class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :left_massage_method , "左" %>
+                    <%= form.text_field :left_massage_method , class: 'form-control', size: "60x5" %>
+                  </div>
+                  
+                <!--<h6>マッサージ方法（具体的なマッサージの手技のやり方）</h6>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "１" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "２" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "３" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "４" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "５" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "６" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <h6>マッサージの結果</h6>
+                  <div class="text_field mb-2">
+                    <%= form.label :right_todays_massage_result, "右" %>
+                    <%= form.text_field :right_todays_massage_result, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :left_todays_massage_result, "左" %>
+                    <%= form.text_field :left_todays_massage_result, class: 'form-control', size: "60x5" %>
+                  </div>
+                <!--<h6>マッサージの結果</h6>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "１" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "２" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "３" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "４" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "５" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <!--  <div class="text_field mb-2">-->
+                <!--    <%#= form.label :, "６" %>-->
+                <!--    <%#= form.text_field :, class: 'form-control', size: "60x5" %>-->
+                <!--  </div>-->
+                <hr>
+                  <div class="text_field mb-2">
+                    <%= form.label :assessment_at_initial_visit, "初診時の全体のアセスメント" %>
+                    <%= form.text_area :assessment_at_initial_visit, class: 'form-control', size: "60x5" %>
+                  </div>
+                   <div class="text_field mb-2">
+                    <%= form.label :guidance_1, "次回までのプラン１" %>
+                    <%= form.text_field :guidance_1, class: 'form-control', size: "60x5" %>
+                  </div>
+                  
+                  <div class="text_field mb-2">
+                    <%= form.label :guidance_2, "２" %>
+                    <%= form.text_field :guidance_2, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :guidance_3, "３" %>
+                    <%= form.text_field :guidance_3, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :guidance_4, "４" %>
+                    <%= form.text_field :guidance_4, class: 'form-control', size: "60x5" %>
+                  </div>
+                  <div class="text_field mb-2">
+                    <%= form.label :guidance_5, "5" %>
+                    <%= form.text_field :guidance_5, class: 'form-control', size: "60x5" %>
+                  </div>
+                   <div class="text_field mb-2">
+                    <%= form.label :derection, "方向性" %>
+                    <%= form.text_field :derection, class: 'form-control', size: "60x5" %>
+                  </div>
+                  </div>
                   <div class="d-flex justify-content-around">
                     <div class="form-group mb-4">
-                      <%= form.label :udder_warmth_right, "(右)" ,class: 'me-2'%>
-                      <%= form.label :udder_warmth_right, "++", {value: "++", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_right, "++" ,class: 'me-2' %>
-                      <%= form.label :udder_warmth_righ, "+", {value: "+", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_right, "+" %>
-                      <%= form.label :udder_warmth_righ, "±", {value: "±", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_right, "±" ,class: 'me-2' %>
-                      <%= form.label :udder_warmth_righ, "-", {value: "-", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_right, "-" %>
+                      <%= form.label :next_back_to_the_hospital_day, "次回予約" ,class: 'me-2'%>
+                      <%= form.label :next_back_to_the_hospital_day, "あり", {value: "あり", style: "display: inline-block;"} %>
+                      <%= form.radio_button :next_back_to_the_hospital_day, "あり" ,class: 'me-2' %>
+                      <%= form.label :next_back_to_the_hospital_day, "なし", {value: "なし", style: "display: inline-block;"} %>
+                      <%= form.radio_button :next_back_to_the_hospital_day, "なし" %>
                     </div>
-                
-                    <div class="form-group mb-4">
-                      <%= form.label :udder_warmth_left, "(左)" ,class: 'me-2'%>
-                      <%= form.label :udder_warmth_left, "++", {value: "++", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_left, "++" ,class: 'me-2' %>
-                      <%= form.label :udder_warmth_left, "+", {value: "+", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_left, "+" %>
-                      <%= form.label :udder_warmth_left, "±", {value: "±", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_left, "±" ,class: 'me-2' %>
-                      <%= form.label :udder_warmth_left, "-", {value: "-", style: "display: inline-block;"} %>
-                      <%= form.radio_button :udder_warmth_left, "-" %>
-                    </div>
-                  </div>
-                    
-                <hr>
-                  <div class="form-group mb-4">
-                    <%= form.label :breast_size_difference, "乳房のサイズ左右差" ,class: 'me-2'%><br>
-                    <%= form.label :breast_size_difference, "R = L", {value: "R = L", style: "display: inline-block;"} %>
-                    <%= form.radio_button :breast_size_difference, "R = L" ,class: 'me-2' %>
-                    <%= form.label :breast_size_difference, "R =< L", {value: "R =< L", style: "display: inline-block;"} %>
-                    <%= form.radio_button :breast_size_difference, "R =< L",class: 'me-2' %>
-                    <%= form.label :breast_size_difference, "R < L", {value: "R < L", style: "display: inline-block;"} %>
-                    <%= form.radio_button :breast_size_difference, "R < L" ,class: 'me-2' %>
-                    <%= form.label :breast_size_difference, "R >= L", {value: "R >= L", style: "display: inline-block;"} %>
-                    <%= form.radio_button :breast_size_difference, "R >= L" ,class: 'me-2'%>
-                    <%= form.label :breast_size_difference, "R > L", {value: "R > L", style: "display: inline-block;"} %>
-                    <%= form.radio_button :breast_size_difference, "R > L" %>
-                  </div>
-                <hr>
-                <h6>緊満度</h6>
-                <div class="d-flex justify-content-around">
-                  <div class="form-group mb-4">
-                    <%= form.label :udder_tension_right, "(右)" ,class: 'me-2'%>
-                    <%= form.label :udder_tension_right, "++", {value: "++", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_right, "++" ,class: 'me-2' %>
-                    <%= form.label :udder_tension_right, "+", {value: "+", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_right, "+",class: 'me-2' %>
-                    <%= form.label :udder_tension_right, "±", {value: "±", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_right, "±" ,class: 'me-2' %>
-                    <%= form.label :udder_tension_right, "-", {value: "-", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_right, "-" %>
-                  </div>
-                  <div class="form-group mb-4">
-                    <%= form.label :udder_tension_left, "(左)" ,class: 'me-2'%>
-                    <%= form.label :udder_tension_left, "++", {value: "++", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_left, "++" ,class: 'me-2' %>
-                    <%= form.label :udder_tension_left, "+", {value: "+", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_left, "+" %>
-                    <%= form.label :udder_tension_left, "±", {value: "±", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_left, "±" ,class: 'me-2' %>
-                    <%= form.label :udder_tension_left, "-", {value: "-", style: "display: inline-block;"} %>
-                    <%= form.radio_button :udder_tension_left, "-" %>
-                  </div>
-                </div>
-                
-                <hr>
-                <h6>副乳</h6>
-                 <div class="d-flex justify-content-around">
-                    <div class="form-group mb-4">
-                      <%= form.label :sub_breast_right, "(右)" ,class: 'me-2'%>
-                      <%= form.label :sub_breast_right, "あり", {value: "あり", style: "display: inline-block;"} %>
-                      <%= form.radio_button :sub_breast_right, "あり" ,class: 'me-2' %>
-                      <%= form.label :sub_breast_right, "なし", {value: "なし", style: "display: inline-block;"} %>
-                      <%= form.radio_button :sub_breast_right, "なし" %>
-                    </div>
-                    <div class="form-group mb-4">
-                      <%= form.label :sub_breast_left, "(左)" ,class: 'me-2'%>
-                      <%= form.label :sub_breast_left, "あり", {value: "あり", style: "display: inline-block;"} %>
-                      <%= form.radio_button :sub_breast_left, "あり" ,class: 'me-2' %>
-                      <%= form.label :sub_breast_left, "なし", {value: "なし", style: "display: inline-block;"} %>
-                      <%= form.radio_button :sub_breast_left, "なし" %>
-                    </div>
-                  </div>
-                 <hr>
-                 <h5>体温</h5>
-                  <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :right_body_temperature_before_massage, "マッサージ前(右)" %>
-                      <%= form.number_field :right_body_temperature_before_massage , class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :left_body_temperature_before_massage, "マッサージ前(左)" %>
-                      <%= form.number_field :left_body_temperature_before_massage ,class: 'form-control' %>
-                    </div>
-                </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :right_body_temperature_after_massage, "マッサージ後(右)" %>
-                    <%= form.number_field :right_body_temperature_after_massage ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :left_body_temperature_before_massage, "マッサージ後(左)" %>
-                    <%= form.number_field :left_body_temperature_before_massage ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr>
-                <br>
-                <h5>乳輪部について</h5>
-                <h5>伸展長</h5>
-                 <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :extension_length_before_massage_right, "マッサージ前(右)" %>
-                      <%= form.number_field :extension_length_before_massage_right ,class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :extension_length_before_massage_left, "マッサージ前(左)" %>
-                      <%= form.number_field :extension_length_before_massage_left ,class: 'form-control' %>
-                    </div>
-                  </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :extension_length_after_massage_right, "マッサージ後(右)" %>
-                    <%= form.number_field :extension_length_after_massage_right ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :extension_length_after_massage_left, "マッサージ後(左)" %>
-                    <%= form.number_field :extension_length_after_massage_left ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :nipple_width_right, "乳輪の横幅(右)" %>
-                    <%= form.number_field :nipple_width_right ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :nipple_width_left, "乳輪の横幅(左)" %>
-                    <%= form.number_field :nipple_width_left ,class: 'form-control' %>
-                  </div>
-                </div>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :nipple_warp_right, "乳輪の縦幅(右)" %>
-                    <%= form.number_field :nipple_warp_right ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :nipple_warp_left, "乳輪の縦幅(左)" %>
-                    <%= form.number_field :nipple_warp_left ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                  <div class="form-group mb-4">
-                    <%= form.label :nipple_color_right, "乳輪色(右)" ,class: 'me-2'%>
-                    <%= form.label :nipple_color_right, "ピンク", {value: "ピンク", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "ピンク" ,class: 'me-2' %>
-                    <%= form.label :nipple_color_right, "薄茶", {value: "薄茶", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "薄茶" %>
-                    <%= form.label :nipple_color_right, "茶色", {value: "茶色", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "茶色" ,class: 'me-2' %>
-                    <%= form.label :nipple_color_right, "焦茶", {value: "焦茶", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "焦茶" %>
-                  </div>
-                  <div class="form-group mb-4">
-                    <%= form.label :nipple_color_left, "乳輪色(左)" ,class: 'me-2'%>
-                    <%= form.label :nipple_color_right, "ピンク", {value: "ピンク", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "ピンク" ,class: 'me-2' %>
-                    <%= form.label :nipple_color_right, "薄茶", {value: "薄茶", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "薄茶" %>
-                    <%= form.label :nipple_color_right, "茶色", {value: "茶色", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "茶色" ,class: 'me-2' %>
-                    <%= form.label :nipple_color_right, "焦茶", {value: "焦茶", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_color_right, "焦茶" %>
-                  </div>
-                </div>
-                <hr>
-                <br>
-                <h6>伸展度</h6>
-                 <div class="d-flex justify-content-around">
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_extension_right_before_massage, "マッサージ前(右)" ,class: 'me-2'%>
-                      <%= form.label :breast_extension_right_before_massage, "良好", {value: "良好", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_right_before_massage, "良好" ,class: 'me-2' %>
-                      <%= form.label :breast_extension_right_before_massage, "不良", {value: "不良", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_right_before_massage, "不良" %>
-                    </div>
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_extension_left_before_massage, "マッサージ前(左)" ,class: 'me-2'%>
-                      <%= form.label :breast_extension_left_before_massage, "良好", {value: "良好", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_left_before_massage, "良好" ,class: 'me-2' %>
-                      <%= form.label :breast_extension_left_before_massage, "不良", {value: "不良", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_left_before_massage, "不良" %>
-                    </div>
-                  </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_extension_right_after_massage, "マッサージ後(右)" ,class: 'me-2'%>
-                      <%= form.label :breast_extension_right_after_massage, "良好", {value: "良好", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_right_after_massage, "良好" ,class: 'me-2' %>
-                      <%= form.label :breast_extension_right_after_massage, "不良", {value: "不良", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_right_after_massage, "不良" %>
-                    </div>
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_extension_left_after_massage, "マッサージ後(左)" ,class: 'me-2'%>
-                      <%= form.label :breast_extension_left_after_massage, "良好", {value: "良好", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_left_after_massage, "良好" ,class: 'me-2' %>
-                      <%= form.label :breast_extension_left_after_massage, "不良", {value: "不良", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_extension_left_after_massage, "不良" %>
-                    </div>
-                  </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_skin_problems_right, "乳輪の皮膚トラブル(右)" ,class: 'me-2'%>
-                      <%= form.label :breast_skin_problems_right, "あり", {value: "あり", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_skin_problems_right, "あり" ,class: 'me-2' %>
-                      <%= form.label :breast_skin_problems_right, "なし", {value: "なし", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_skin_problems_right, "なし" %>
-                    </div>
-                    <div class="form-group mb-4">
-                      <%= form.label :breast_skin_problems_left, "乳輪の皮膚トラブル(左)" ,class: 'me-2'%>
-                      <%= form.label :breast_skin_problems_left, "あり", {value: "あり", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_skin_problems_left, "あり" ,class: 'me-2' %>
-                      <%= form.label :breast_skin_problems_left, "なし", {value: "なし", style: "display: inline-block;"} %>
-                      <%= form.radio_button :breast_skin_problems_left, "なし" %>
-                    </div>
-                  </div>
-                <hr>
-         
-                <br>
-                <h5>乳頭部について</h5>
-                 <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :length_of_right_teat, "乳頭長(右)" %>
-                      <%= form.number_field :length_of_right_teat ,class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :length_of_left_teat, "乳頭長(左)" %>
-                      <%= form.number_field :length_of_left_teat ,class: 'form-control' %>
-                    </div>
-                  </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                   <div class="col form-group mb-3">
-                    <%= form.label :nipple_shape_right, "乳頭形態(右)" %>
-                    <%= form.select :nipple_shape_right,[["正常","正常"], ["短","短"], ["裂状","裂状"], ["裂状短","裂状短"],["巨大","巨大"], ["扁平","扁平"],["仮性陥没","仮性陥没"],["真性陥没","真性陥没"],["球状","球状"],["小","小"]], prompt: "選択してください", class: 'form-select' %>
-                    </div>
-                   <div class="col form-group mb-3">
-                    <%= form.label :nipple_shape_left, "乳頭形態(左)" %>
-                    <%= form.select :nipple_shape_left, [["正常","正常"], ["短","短"], ["裂状","裂状"], ["裂状短","裂状短"],["巨大","巨大"], ["扁平","扁平"], ["仮性陥没","仮性陥没"],["真性陥没","真性陥没"],["球状","球状"],["小","小"]], prompt: "選択してください", class: 'form-select' %>
-                  </div>
-                </div>
-                <hr>
-                <div class="d-flex justify-content-around">
-                  <div class="form-group mb-4">
-                    <%= form.label :nipple_shape_right, "乳頭の硬さ(右)" ,class: 'me-2'%>
-                    <%= form.label :nipple_shape_right, "鼻", {value: "鼻", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_right, "鼻" ,class: 'me-2' %>
-                    <%= form.label :nipple_shape_right, "口唇", {value: "口唇", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_right, "口唇",class: 'me-2' %>
-                    <%= form.label :nipple_shape_right, "耳たぶ", {value: "耳たぶ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_right, "耳たぶ" ,class: 'me-2' %>
-                  </div>
-                  <div class="form-group mb-4">
-                    <%= form.label :nipple_shape_left, "乳頭の硬さ(左)" ,class: 'me-2'%>
-                    <%= form.label :nipple_shape_left, "鼻", {value: "鼻", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_left, "鼻" ,class: 'me-2' %>
-                    <%= form.label :nipple_shape_left, "口唇", {value: "口唇", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_left, "口唇",class: 'me-2' %>
-                    <%= form.label :nipple_shape_left, "耳たぶ", {value: "耳たぶ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :nipple_shape_left, "耳たぶ" ,class: 'me-2' %>
-                  </div>
-                </div>
-                <hr>
-                <br>
-                <h6>開口本数</h6>
-                 <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :number_of_right_teat_ducts_open_before_massage, "マッサージ前(右)" %>
-                      <%= form.number_field :number_of_right_teat_ducts_open_before_massage ,class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :number_of_right_teat_ducts_open_after_massage, "マッサージ後(右)" %>
-                      <%= form.number_field :number_of_right_teat_ducts_open_after_massage ,class: 'form-control' %>
-                    </div>
-                  </div>
-                  <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :number_of_left_teat_ducts_open_before_massage, "マッサージ前(左)" %>
-                      <%= form.number_field :number_of_left_teat_ducts_open_before_massage ,class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :number_of_left_teat_ducts_open_after_massage, "マッサージ後(左)" %>
-                      <%= form.number_field :number_of_left_teat_ducts_open_after_massage ,class: 'form-control' %>
-                    </div>
-                  </div>
-                <br>
-                <hr>
-                <h6>開通本数</h6>
-                <div class="d-flex justify-content-around">
-                    <div class="field mb-2">
-                      <%= form.label :number_of_open_right_milk_ducts_before_massage, "マッサージ前(右)" %>
-                      <%= form.number_field :number_of_open_right_milk_ducts_before_massage ,class: 'form-control' %>
-                    </div>
-                    <div class="field mb-2">
-                      <%= form.label :number_of_open_right_milk_ducts_after_massage, "マッサージ後(右)" %>
-                      <%= form.number_field :number_of_open_right_milk_ducts_after_massage ,class: 'form-control' %>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :number_of_open_left_milk_ducts_before_massage, "マッサージ前(左)" %>
-                    <%= form.number_field :number_of_open_left_milk_ducts_before_massage,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :number_of_open_left_milk_ducts_after_massage, "マッサージ後(左)" %>
-                    <%= form.number_field :number_of_open_left_milk_ducts_after_massage ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr>
-                <br>
-                <h6>射乳本数</h6>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :number_of_ejaculation_breasts_right_before_massage, "マッサージ前(右)" %>
-                    <%= form.number_field :number_of_ejaculation_breasts_right_before_massage ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :number_of_ejaculation_breasts_left_before_massage, "マッサージ前(左)" %>
-                    <%= form.number_field :number_of_ejaculation_breasts_left_before_massage ,class: 'form-control' %>
-                  </div>
-                </div>
-                 <div class="d-flex justify-content-around">
-                  <div class="field mb-2">
-                    <%= form.label :number_of_ejaculated_right_breast_after_massage, "マッサージ後(右)" %>
-                    <%= form.number_field :number_of_ejaculated_right_breast_after_massage ,class: 'form-control' %>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :number_of_ejaculated_left_breast_after_massage, "マッサージ後(左)" %>
-                    <%= form.number_field :number_of_ejaculated_left_breast_after_massage ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr><br>
-                <h6>乳汁の性質</h6>
-                 <div class="d-flex justify-content-around">
-                    <div class="form-group mb-4">
-                      <%= form.label :right_milk_properties, "(右)" ,class: 'me-2'%>
-                      <%= form.label :right_milk_properties, "初乳", {value: "初乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_properties, "初乳" ,class: 'me-2' %>
-                      <%= form.label :right_milk_properties, "移行乳", {value: "移行乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_properties, "移行乳" %>
-                      <%= form.label :right_milk_properties, "成乳", {value: "成乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_properties, "成乳" ,class: 'me-2' %>
-                    </div>
-                    <div class="form-group mb-4">
-                      <%= form.label :left_milk_properties, "(左)" ,class: 'me-2'%>
-                      <%= form.label :left_milk_properties, "初乳", {value: "初乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_properties, "初乳" ,class: 'me-2' %>
-                      <%= form.label :left_milk_properties, "移行乳", {value: "移行乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_properties, "移行乳" %>
-                      <%= form.label :left_milk_properties, "成乳", {value: "成乳", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_properties, "成乳" ,class: 'me-2' %>
-                    </div>
-                  </div>
-                <hr><br>
-                 <div class="d-flex justify-content-around">
-                   <div class="form-group mb-4">
-                    <%= form.label :milk_color_of_right_udder, "乳汁の色(右)" ,class: 'me-2'%>
-                    <%= form.label :milk_color_of_right_udder, "Ⅰ", {value: "Ⅰ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_right_udder, "Ⅰ" ,class: 'me-2' %>
-                    <%= form.label :milk_color_of_right_udder, "Ⅱa", {value: "Ⅱa", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_right_udder, "Ⅱa" %>
-                    <%= form.label :milk_color_of_right_udder, "Ⅱb", {value: "Ⅱb", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_right_udder, "Ⅱb" ,class: 'me-2' %>
-                    <%= form.label :milk_color_of_right_udder, "Ⅲ", {value: "Ⅲ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_right_udder, "Ⅲ" %>
-                  </div>
-                   <div class="form-group mb-4">
-                    <%= form.label :milk_color_of_left_udder, "乳汁の色(左)" ,class: 'me-2'%>
-                    <%= form.label :milk_color_of_left_udder, "Ⅰ", {value: "Ⅰ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_left_udder, "Ⅰ" ,class: 'me-2' %>
-                    <%= form.label :milk_color_of_left_udder, "Ⅱa", {value: "Ⅱa", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_left_udder, "Ⅱa" %>
-                    <%= form.label :milk_color_of_left_udder, "Ⅱb", {value: "Ⅱb", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_left_udder, "Ⅱb" ,class: 'me-2' %>
-                    <%= form.label :milk_color_of_left_udder, "Ⅲ", {value: "Ⅲ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :milk_color_of_left_udder, "Ⅲ" %>
-                  </div>
-                </div>
-                 <hr><br>
-                 <h6>乳カス</h6>
-                  <div class="d-flex justify-content-around">
-                 <div class="form-group mb-4">
-                  <%= form.label :right_milk_debris, "(右)" ,class: 'me-2'%>
-                  <%= form.label :right_milk_debris, "Ⅰ", {value: "Ⅰ", style: "display: inline-block;"} %>
-                  <%= form.radio_button :right_milk_debris, "Ⅰ" ,class: 'me-2' %>
-                  <%= form.label :right_milk_debris, "Ⅱa", {value: "Ⅱa", style: "display: inline-block;"} %>
-                  <%= form.radio_button :right_milk_debris, "Ⅱa" %>
-                  <%= form.label :right_milk_debris, "Ⅱb", {value: "Ⅱb", style: "display: inline-block;"} %>
-                  <%= form.radio_button :right_milk_debris, "Ⅱb" ,class: 'me-2' %>
-                  <%= form.label :right_milk_debris, "Ⅲ", {value: "Ⅲ", style: "display: inline-block;"} %>
-                  <%= form.radio_button :right_milk_debris, "Ⅲ" %>
-                </div>
-                   <div class="form-group mb-4">
-                    <%= form.label :left_milk_debris, "(左)" ,class: 'me-2'%>
-                    <%= form.label :left_milk_debris, "Ⅰ", {value: "Ⅰ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "Ⅰ" ,class: 'me-2' %>
-                    <%= form.label :left_milk_debris, "Ⅱa", {value: "Ⅱa", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "Ⅱa" %>
-                    <%= form.label :left_milk_debris, "Ⅱb", {value: "Ⅱb", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "Ⅱb" ,class: 'me-2' %>
-                    <%= form.label :left_milk_debris, "Ⅲ", {value: "Ⅲ", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "Ⅲ" %>
-                  </div>
-                </div>
-                
-                <hr><br>
-                 <h6>乳汁の温かさ</h6>
-                  <div class="d-flex justify-content-around">
-                     <div class="form-group mb-4">
-                      <%= form.label :right_milk_temperature, "(右)" ,class: 'me-2'%>
-                      <%= form.label :right_milk_temperature, "あたたかい", {value: "あたたかい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_temperatur, "あたたかい" ,class: 'me-2' %>
-                      <%= form.label :right_milk_temperatur, "冷たい", {value: "冷たい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_tempeatur, "冷たい" %>
-                      <%= form.label :right_milk_temperatur, "ひやっとするほど冷たい", {value: "ひやっとするほど冷たい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_temperatur, "ひやっとするほど冷たい" ,class: 'me-2' %>
-                      <%= form.label :right_milk_temperatur, "わからない", {value: "わからない", style: "display: inline-block;"} %>
-                      <%= form.radio_button :right_milk_temperatur, "わからない" %>
-                    </div>
-                     <div class="form-group mb-4">
-                      <%= form.label :left_milk_temperature, "(左)" ,class: 'me-2'%>
-                      <%= form.label :left_milk_temperature, "あたたかい", {value: "あたたかい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_temperature, "あたたかい" ,class: 'me-2' %>
-                      <%= form.label :left_milk_temperature, "冷たい", {value: "冷たい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_temperature, "冷たい" %>
-                      <%= form.label :left_milk_temperature, "ひやっとするほど冷たい", {value: "ひやっとするほど冷たい", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_temperature, "ひやっとするほど冷たい" ,class: 'me-2' %>
-                      <%= form.label :left_milk_temperature, "わからない", {value: "わからない", style: "display: inline-block;"} %>
-                      <%= form.radio_button :left_milk_temperature, "わからない" %>
-                    </div>
-                </div>
-                <hr><br>   
-                
-                 <div class="img-select">
-                  <div class="text-start">
-                    <%= form.label :udder_diagram , '乳房図', class: 'fw-bold mb-4 text-main' %>
-                    <span class="p_required">必須</span>
-                  </div>
-                    <%=form.file_field :udder_diagram%>
-                </div>
-                <hr><br>
-                <h5>授乳状況</h5>
-                 <div class="form-group mb-4">
-                  <%= form.label :breastfeeding_status, "母乳意識(カラムを追加する" ,class: 'me-2'%><br>
-                  <%= form.label :breastfeeding_status, "完全母乳", {value: "完全母乳", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "できれば母乳" ,class: 'me-2' %>
-                  <%= form.label :breastfeeding_status, "できれば母乳", {value: "できれば母乳", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "完全母乳" ,class: 'me-2' %>
-                  <%= form.label :breastfeeding_status, "混合", {value: "混合", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "混合" %>
-                  <%= form.label :breastfeeding_status, "ミルク寄りの混合", {value: "ミルク寄りの混合", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "ミルク寄りの混合" %>
-                  <%= form.label :breastfeeding_status, "ミルク", {value: "ミルク", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "ミルク" ,class: 'me-2' %>
-                </div>
-                 <div class="form-group mb-4">
-                  <%= form.label :breastfeeding_status, "授乳の状況" ,class: 'me-2'%><br>
-                  <%= form.label :breastfeeding_status, "母乳", {value: "母乳", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "母乳" ,class: 'me-2' %>
-                  <%= form.label :breastfeeding_status, "混合", {value: "混合", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "混合" %>
-                  <%= form.label :breastfeeding_status, "ミルク", {value: "ミルク", style: "display: inline-block;"} %>
-                  <%= form.radio_button :breastfeeding_status, "ミルク" ,class: 'me-2' %><hr>
-                </div>
-                 <div class="d-flex justify-content-around">
-                   <div class="field mb-2">
-                    <%= form.label :breastfeeding_times, "母乳の回数" %>
-                    <%= form.number_field :breastfeeding_times ,class: 'form-control' %>
-                  </div>
-                   <div class="field mb-2">
-                    <%= form.label :number_of_night_feedings, "夜間授乳の回数" %>
-                    <%= form.number_field :number_of_night_feedings ,class: 'form-control' %>
-                  </div>
-                </div>
-                <hr>
-                 <div class="d-flex justify-content-around">
-                   <div class="field mb-2">
-                    <%= form.label :milk_count, "ミルクの回数" %>
-                    <%= form.number_field :milk_count ,class: 'form-control' %>
-                  </div>
-                   <div class="field mb-2">
-                    <%= form.label :one_serving_of_milk, "１回のミルクの量" %>
-                    <%= form.number_field :one_serving_of_milk ,class: 'form-control' %>
-                  </div>
-                </div>
-                <div class="form-check mb-3">
-                    <%= form.label :time_to_supplement_milk, "ミルクのタイミング(複数選択可)" %>
-                      <div class="form-check">
-                        <% ["毎回","朝","昼","夜","寝る前","夜中","その他","なし"].each do |time_to_supplement_milk| %>
-                        <%= form.check_box :time_to_supplement_milk, {multiple: true}, time_to_supplement_milk, nil %>
-                        <%= time_to_supplement_milk %>
-                        <% end %>
-                      </div>
-                  </div>
-                  <hr>
-                   <div class="d-flex justify-content-around">
-                     <div class="field mb-2">
-                      <%= form.label :milking_frequency, "搾乳の回数" %>
-                      <%= form.number_field :milking_frequency, class: 'form-control' %>
-                    </div>
-                     <div class="field mb-2">
-                      <%= form.label :one_milking_dose, "１回の搾乳量" %>
-                      <%= form.number_field :one_milking_dose, class: 'form-control' %>
-                    </div>
-                  </div>
-                  <div class="field mb-2">
-                    <%= form.label :milking_time_required, "１回の搾乳にかかる時間" %>
-                    <%= form.number_field :milking_time_required, class: 'form-control' %>
-                  </div>
-                  <div class="form-check mb-3">
-                    <%= form.label :milking_method, "搾乳方法(複数選択可)" %>
-                      <div class="form-check">
-                        <% ["手搾り","手動搾乳器","電動搾乳器","その他"].each do |milking_method| %>
-                        <%= form.check_box :milking_method, {multiple: true}, milking_method, nil %>
-                        <%= milking_method %>
-                        <% end %>
-                      </div>
-                  </div>
-                  <br>
-                
-                </div><br><hr>
-                <h6>抱き方</h6>
-                 <div class="form-check mb-3">
-                    <%= form.label :breastfeeding_posture_right, "右(複数選択可)" %>
-                      <div class="form-check">
-                        <% ["横抱き","脇だき","縦抱き","添い乳","その他"].each do |breastfeeding_posture_right| %>
-                        <%= form.check_box :breastfeeding_posture_right, {multiple: true}, breastfeeding_posture_right, nil %>
-                        <%= breastfeeding_posture_right %>
-                        <% end %>
-                      </div>
-                  </div>  
-                 <div class="form-check mb-3">
-                    <%= form.label :breastfeeding_posture_left, "左(複数選択可)" %>
-                      <div class="form-check">
-                        <% ["横抱き","脇だき","縦抱き","添い乳","その他"].each do |breastfeeding_posture_left| %>
-                        <%= form.check_box :breastfeeding_posture_left, {multiple: true}, breastfeeding_posture_left, nil %>
-                        <%= breastfeeding_posture_left %>
-                        <% end %>
-                      </div>
-                  </div> 
-                  <div class="col form-group mb-3">
-                  <%= form.label :baby_food, "離乳食" %><br>
-                  <%= form.select :baby_food, [["なし","なし"], ["１回","１回"], ["２回","２回"], ["３回","３回"], ["４回以上","４回以上"]], prompt: "選択してください", class: 'form-select' %>
-                </div>
-                 <div class="field mb-2">
-                  <%= form.label :todays_child_weigth, "本日の体重" %>
-                  <%= form.number_field :todays_child_weigth, class: 'form-control' %>
-                </div>
-                 <div class="d-flex justify-content-around">
-                   <div class="field mb-2">
-                    <%= form.label :weight_gain_previous_comparison, "体重増加（前回比）" %>
-                    <%= form.number_field :weight_gain_previous_comparison, class: 'form-control' %>
-                  </div>
-                   <div class="field mb-2">
-                    <%= form.label :weight_gain_compared_to_birth, "体重増加（出生時比）" %>
-                    <%= form.number_field :weight_gain_compared_to_birth, class: 'form-control' %>
-                </div>
-                </div>
-                
                 <div class="form-group">
                   <%= form.submit "登録する" ,class: 'btn btn-danger mx-1' %>
                 </div>
+              </div>
               </div>
             <% end %>
       </div>
