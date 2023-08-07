@@ -23,6 +23,8 @@ gem 'devise'
 # Image uploader
 gem 'carrierwave', '~> 2.0'
 
+gem 'pry-rails'
+
 group :development, :test do
   gem 'byebug', '11.1.3'
 end

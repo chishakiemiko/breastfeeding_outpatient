@@ -11,30 +11,30 @@ class CreateBreastConditions < ActiveRecord::Migration[6.1]
       t.string :udder_tension_left
       t.string :sub_breast_right
       t.string :sub_breast_left
-      t.integer :right_body_temperature_before_massage
-      t.integer :right_body_temperature_after_massage
-      t.integer :left_body_temperature_before_massage
-      t.integer :left_body_temperature_after_massage
-      t.integer :extension_length_before_massage_right
-      t.integer :extension_length_before_massage_left
-      t.integer :extension_length_after_massage_right
-      t.integer :extension_length_after_massage_left
+      t.float :right_body_temperature_before_massage
+      t.float :right_body_temperature_after_massage
+      t.float :left_body_temperature_before_massage
+      t.float :left_body_temperature_after_massage
+      t.float :extension_length_before_massage_right
+      t.float :extension_length_before_massage_left
+      t.float :extension_length_after_massage_right
+      t.float :extension_length_after_massage_left
       t.string :breast_extension_right_before_massage
       t.string :breast_extension_right_after_massage
       t.string :breast_extension_left_before_massage
       t.string :breast_extension_left_after_massage
       t.string :nipple_color_right
       t.string :nipple_color_left
-      t.integer :nipple_width_right
-      t.integer :nipple_width_left
-      t.integer :nipple_warp_right
-      t.integer :nipple_warp_left
+      t.float :nipple_width_right
+      t.float :nipple_width_left
+      t.float :nipple_warp_right
+      t.float :nipple_warp_left
       t.string :breast_skin_problems_right
       t.string :breast_skin_problems_left
       t.string :nipple_shape_right
       t.string :nipple_shape_left
-      t.integer :length_of_right_teat
-      t.integer :length_of_left_teat
+      t.float :length_of_right_teat
+      t.float :length_of_left_teat
       t.string :hardness_of_right_teat
       t.string :hardness_of_left_teat
       t.integer :number_of_right_teat_ducts_open_before_massage

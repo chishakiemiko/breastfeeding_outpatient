@@ -17,11 +17,9 @@
       </nav>
 
           <div class="col-lg-9 p-5  border border-danger">
-            <h2 class="paitiant_list_title">乳房状態</h2>
+            <h2 class="paitiant_list_title">乳房状態編集</h2>
  
-
-            <%#= form_with model: [patient, patient.breast_conditions.new], local: true, method: :post do |form| %>
-            <%= form_with model: [@patient, @breast_condition], local: true, method: :post do |form| %>
+            <%= form_with model: [@patient, @breast_condition], url: patient_breast_condition_path, local: true, method: :patch do |form| %>
               <div class ="row">
                 <div class="text_field mb-2">
                   <%= form.label :chief_complaint, "主訴" %>
@@ -147,7 +145,6 @@
                  <div class="d-flex justify-content-around">
                   <div class="field mb-2">
                     <%= form.label :right_body_temperature_after_massage, "マッサージ後(右)" %>
-
                     <%= form.number_field :right_body_temperature_after_massage , step: "0.1", class: 'form-control' %>
                   </div>
                   <div class="field mb-2">
@@ -188,13 +185,12 @@
                   </div>
                   <div class="field mb-2">
                     <%= form.label :nipple_width_left, "乳輪の横幅(左)" %>
-                    <%= form.number_field :nipple_width_left , step: "0.1", class: 'form-control' %>
+                    <%= form.number_field :nipple_width_left , step: "0.1", lass: 'form-control' %>
                   </div>
                 </div>
                  <div class="d-flex justify-content-around">
                   <div class="field mb-2">
                     <%= form.label :nipple_warp_right, "乳輪の縦幅(右)" %>
-
                     <%= form.number_field :nipple_warp_right , step: "0.1", class: 'form-control' %>
                   </div>
                   <div class="field mb-2">
@@ -291,7 +287,7 @@
                     </div>
                     <div class="field mb-2">
                       <%= form.label :length_of_left_teat, "乳頭長(左)" %>
-                      <%= form.number_field :length_of_left_teat , step: "0.1",class: 'form-control' %>
+                      <%= form.number_field :length_of_left_teat , step: "0.1", class: 'form-control' %>
                     </div>
                   </div>
                 <hr>
@@ -421,7 +417,6 @@
                  <div class="d-flex justify-content-around">
                    <div class="form-group mb-4">
                     <%= form.label :milk_color_of_right_udder, "乳汁の色(右)" ,class: 'me-2'%>
-
                     <%= form.label :milk_color_of_right_udder, "乳白色", {value: "乳白色", style: "display: inline-block;"} %>
                     <%= form.radio_button :milk_color_of_right_udder, "乳白色" ,class: 'me-2' %>
                     <%= form.label :milk_color_of_right_udder, "乳白黄色", {value: "乳白黄色", style: "display: inline-block;"} %>
@@ -453,37 +448,39 @@
                     <%= form.radio_button :milk_color_of_left_udder, "濃黄色" %>
                     <%= form.label :milk_color_of_left_udder, "膿汁色", {value: "膿汁色", style: "display: inline-block;"} %>
                     <%= form.radio_button :milk_color_of_left_udder, "膿汁色" %>
-                   </div>
+                  </div>
+                   
                 </div>
                  <hr><br>
                  <h6>乳カス</h6>
-                 <div class="d-flex justify-content-around">
-                  <div class="form-group mb-4">
-                    <%= form.label :right_milk_debris, "(右)" ,class: 'me-2'%>
-                    <%= form.label :right_milk_debris, "なし", {value: "なし", style: "display: inline-block;"} %>
-                    <%= form.radio_button :right_milk_debris, "なし" ,class: 'me-2' %>
-                    <%= form.label :right_milk_debris, "多量", {value: "多量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :right_milk_debris, "多量" %>
-                    <%= form.label :right_milk_debris, "中量", {value: "中量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :right_milk_debris, "中量" ,class: 'me-2' %>
-                    <%= form.label :right_milk_debris, "少量", {value: "少量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :right_milk_debris, "少量" %>
-                    <%= form.label :right_milk_debris, "極少量", {value: "極少量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :right_milk_debris, "極少量" %>
-                  </div>
-                  <div class="form-group mb-4">
-                    <%= form.label :left_milk_debris, "(左)" ,class: 'me-2'%>
-                    <%= form.label :left_milk_debris, "なし", {value: "なし", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "なし" ,class: 'me-2' %>
-                    <%= form.label :left_milk_debris, "多量", {value: "多量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "多量" %>
-                    <%= form.label :left_milk_debris, "中量", {value: "中量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "中量" ,class: 'me-2' %>
-                    <%= form.label :left_milk_debris, "少量", {value: "少量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "少量" %>
-                    <%= form.label :left_milk_debris, "極少量", {value: "極少量", style: "display: inline-block;"} %>
-                    <%= form.radio_button :left_milk_debris, "極少量" %>
-                  </div>
+                  <div class="d-flex justify-content-around">
+                 <div class="form-group mb-4">
+                  <%= form.label :right_milk_debris, "(右)" ,class: 'me-2'%>
+                  <%= form.label :right_milk_debris, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_milk_debris, "なし" ,class: 'me-2' %>
+                  <%= form.label :right_milk_debris, "多量", {value: "多量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_milk_debris, "多量" %>
+                  <%= form.label :right_milk_debris, "中量", {value: "中量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_milk_debris, "中量" ,class: 'me-2' %>
+                  <%= form.label :right_milk_debris, "少量", {value: "少量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_milk_debris, "少量" %>
+                  <%= form.label :right_milk_debris, "極少量", {value: "極少量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :right_milk_debris, "極少量" %>
+                </div>
+                 <div class="form-group mb-4">
+                  <%= form.label :left_milk_debris, "(左)" ,class: 'me-2'%>
+                  <%= form.label :left_milk_debris, "なし", {value: "なし", style: "display: inline-block;"} %>
+                  <%= form.radio_button :left_milk_debris, "なし" ,class: 'me-2' %>
+                  <%= form.label :left_milk_debris, "多量", {value: "多量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :left_milk_debris, "多量" %>
+                  <%= form.label :left_milk_debris, "中量", {value: "中量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :left_milk_debris, "中量" ,class: 'me-2' %>
+                  <%= form.label :left_milk_debris, "少量", {value: "少量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :left_milk_debris, "少量" %>
+                  <%= form.label :left_milk_debris, "極少量", {value: "極少量", style: "display: inline-block;"} %>
+                  <%= form.radio_button :left_milk_debris, "極少量" %>
+                </div>
+                   
                 </div>
                 
                 <hr><br>
@@ -519,6 +516,7 @@
                     <%= form.label :udder_diagram , '乳房図', class: 'fw-bold mb-4 text-main' %>
                     <span class="p_required">必須</span>
                   </div>
+                    <%=form.file_field :udder_diagram %>
                 </div>
                 <hr><br>
                 <h5>授乳状況</h5>
@@ -627,11 +625,10 @@
                 </div>
                 
                 <div class="form-group">
-                  <%= form.submit "登録する" ,class: 'btn btn-danger mx-1' %>
+                  <%= form.submit "編集する" ,class: 'btn btn-danger mx-1' %>
                 </div>
               </div>
             <% end %>
       </div>
     </div>
-  </div>
-
+  </div>  
