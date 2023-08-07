@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_02_214322) do
+ActiveRecord::Schema.define(version: 2023_07_25_133237) do
 
   create_table "breast_conditions", charset: "utf8mb4", force: :cascade do |t|
     t.text "chief_complaint", null: false
@@ -23,30 +23,30 @@ ActiveRecord::Schema.define(version: 2023_07_02_214322) do
     t.string "udder_tension_left"
     t.string "sub_breast_right"
     t.string "sub_breast_left"
-    t.integer "right_body_temperature_before_massage"
-    t.integer "right_body_temperature_after_massage"
-    t.integer "left_body_temperature_before_massage"
-    t.integer "left_body_temperature_after_massage"
-    t.integer "extension_length_before_massage_right"
-    t.integer "extension_length_before_massage_left"
-    t.integer "extension_length_after_massage_right"
-    t.integer "extension_length_after_massage_left"
+    t.float "right_body_temperature_before_massage"
+    t.float "right_body_temperature_after_massage"
+    t.float "left_body_temperature_before_massage"
+    t.float "left_body_temperature_after_massage"
+    t.float "extension_length_before_massage_right"
+    t.float "extension_length_before_massage_left"
+    t.float "extension_length_after_massage_right"
+    t.float "extension_length_after_massage_left"
     t.string "breast_extension_right_before_massage"
     t.string "breast_extension_right_after_massage"
     t.string "breast_extension_left_before_massage"
     t.string "breast_extension_left_after_massage"
     t.string "nipple_color_right"
     t.string "nipple_color_left"
-    t.integer "nipple_width_right"
-    t.integer "nipple_width_left"
-    t.integer "nipple_warp_right"
-    t.integer "nipple_warp_left"
+    t.float "nipple_width_right"
+    t.float "nipple_width_left"
+    t.float "nipple_warp_right"
+    t.float "nipple_warp_left"
     t.string "breast_skin_problems_right"
     t.string "breast_skin_problems_left"
     t.string "nipple_shape_right"
     t.string "nipple_shape_left"
-    t.integer "length_of_right_teat"
-    t.integer "length_of_left_teat"
+    t.float "length_of_right_teat"
+    t.float "length_of_left_teat"
     t.string "hardness_of_right_teat"
     t.string "hardness_of_left_teat"
     t.integer "number_of_right_teat_ducts_open_before_massage"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2023_07_02_214322) do
     t.string "udder_diagram"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "patient_id"
+    t.index ["patient_id"], name: "index_breast_conditions_on_patient_id"
   end
 
   create_table "hospitals", charset: "utf8mb4", force: :cascade do |t|
@@ -102,6 +104,44 @@ ActiveRecord::Schema.define(version: 2023_07_02_214322) do
     t.string "avatar"
     t.index ["email"], name: "index_hospitals_on_email", unique: true
     t.index ["reset_password_token"], name: "index_hospitals_on_reset_password_token", unique: true
+  end
+
+  create_table "medical_treatments", charset: "utf8mb4", force: :cascade do |t|
+    t.string "problem_list_1"
+    t.string "problem_list_2"
+    t.string "problem_list_3"
+    t.string "problem_list_4"
+    t.string "problem_list_5"
+    t.string "problem_list_6"
+    t.string "problem_list_7"
+    t.string "root_problem"
+    t.string "diagnosis_name"
+    t.text "right_breast_condition"
+    t.text "left_breast_condition"
+    t.string "right_breast_lump"
+    t.string "foot_bath"
+    t.string "shoulder_and_back_acupressure"
+    t.string "breast_massage"
+    t.string "breast_feeding"
+    t.string "necessity_of_protector"
+    t.string "right_massage_method"
+    t.string "left_massage_method"
+    t.string "three_determining_factors_manipulation"
+    t.string "three_determining_factors_pressure"
+    t.string "three_determining_factors_duration_of_action"
+    t.text "right_todays_massage_result"
+    t.text "left_todays_massage_result"
+    t.text "assessment_at_initial_visit"
+    t.text "derection"
+    t.text "plan_for_next_visit"
+    t.string "guidance_1"
+    t.string "guidance_2"
+    t.string "guidance_3"
+    t.string "guidance_4"
+    t.string "guidance_5"
+    t.string "next_back_to_the_hospital_day"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "patients", charset: "utf8mb4", force: :cascade do |t|
@@ -157,4 +197,5 @@ ActiveRecord::Schema.define(version: 2023_07_02_214322) do
     t.index ["hospital_id"], name: "index_patients_on_hospital_id"
   end
 
+  add_foreign_key "breast_conditions", "patients"
 end
