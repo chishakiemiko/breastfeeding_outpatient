@@ -13,7 +13,6 @@ class BreastConditionsController < ApplicationController
   end
     
   def show
-    
   end
   
   def new

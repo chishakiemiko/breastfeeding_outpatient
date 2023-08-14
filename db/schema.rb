@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_25_133237) do
+ActiveRecord::Schema.define(version: 2023_08_07_214528) do
 
   create_table "breast_conditions", charset: "utf8mb4", force: :cascade do |t|
     t.text "chief_complaint", null: false
@@ -142,6 +142,8 @@ ActiveRecord::Schema.define(version: 2023_07_25_133237) do
     t.string "next_back_to_the_hospital_day"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "patient_id"
+    t.index ["patient_id"], name: "index_medical_treatments_on_patient_id"
   end
 
   create_table "patients", charset: "utf8mb4", force: :cascade do |t|
@@ -198,4 +200,5 @@ ActiveRecord::Schema.define(version: 2023_07_25_133237) do
   end
 
   add_foreign_key "breast_conditions", "patients"
+  add_foreign_key "medical_treatments", "patients"
 end

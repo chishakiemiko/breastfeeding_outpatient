@@ -21,7 +21,7 @@ class MedicalTreatmentsController < ApplicationController
   def create
      @medical_treatment = MedicalTreatment.new(medical_treatment_params)
       if @medical_treatment.save
-        redirect_to root_path, flash: {notice: “登録が完了しました.“}
+        redirect_to root_path, flash: {notice: "登録が完了しました."}
       else
         render :new
       end
@@ -33,7 +33,7 @@ class MedicalTreatmentsController < ApplicationController
   
   def update
     if @medical_treatment.update(medical_treatment_params)
-      redirect_to root_path, flash: {notice: “編集が完了しました.“}
+      redirect_to root_path, flash: {notice: "編集が完了しました."}
     else
       render :edit
     end
