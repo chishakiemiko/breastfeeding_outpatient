@@ -20,4 +20,5 @@ bundle exec rake assets:clean
 echo "executing migrate"
 bundle exec rails db:migrate
 
+
 echo "render-build.sh: done"

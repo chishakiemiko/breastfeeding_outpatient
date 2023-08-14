@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2023_08_07_214528) do
 
   create_table "breast_conditions", charset: "utf8mb4", force: :cascade do |t|
@@ -199,6 +200,16 @@ ActiveRecord::Schema.define(version: 2023_08_07_214528) do
     t.index ["hospital_id"], name: "index_patients_on_hospital_id"
   end
 
+  create_table "visit_histories", charset: "utf8mb4", force: :cascade do |t|
+    t.date "visit_on"
+    t.bigint "patient_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["patient_id"], name: "index_visit_histories_on_patient_id"
+  end
+
+  add_foreign_key "visit_histories", "patients"
   add_foreign_key "breast_conditions", "patients"
   add_foreign_key "medical_treatments", "patients"
+
 end
