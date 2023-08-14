@@ -1,0 +1,77 @@
+  <div class="container-fluid m-5">
+    <div class="row">
+      <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block me-3 sidebar collapse h-100">
+      <!-- <div class="col-lg-3 my-5"> -->
+      <section id="side_bar" class="pt-0 text-center">
+        <nav class="m-2 p-1 border border-danger">
+        <h6 class="">来院履歴</h6>
+            <form class="d-flex" role="search">
+              <input type="search" class="form-control" placeholder="検索..." aria-label="検索...">
+            </form>
+          </nav>
+            <nav class="m-2 p-1 border border-danger te">
+              <ul class="nav flex-column p-2">
+                 <p class="mb-0 pb-2">患者ID 2023001</p>
+                 <span class="pb-2">橒木　恵美子</span>
+
+                  <li class="nav-item"><p><a href="#" class="nav-link">基本情報</a></p></li>
+                  <li class="nav-item"><p><a href="#" class="nav-link">乳房状態</a></p></li>
+                  <li class="nav-item"><p><a href="#" class="nav-link">診療記録</a></p></li>
+              </ul>
+          </nav>
+            <nav class="m-2 p-1 border border-danger">
+              <ul class="nav flex-column p-3">
+                <h5 class="">患者一覧へ戻る</h5>
+                  <li class="nav-item"><p><a href="#" class="nav-link">2023/1/1</a></p></li>
+                  <li class="nav-item"><p><a href="#" class="nav-link">2023/2/3</a></p></li>
+                  <li class="nav-item"><p><a href="#" class="nav-link">2023/3/1</a></p></li>
+              </ul>
+          </nav>
+
+                </section>
+      </nav>
+
+        <div class="col-lg-9 p-5 border border-danger">
+          <h2 class="paitiant_list_title my-3">来院履歴</h2>
+          <table class="table table-bordered text-nowrap">
+            <tbody>
+              <tr>
+                <td scope="row">患者ID</td>
+                <td>2023001</td>
+              </tr>
+              <tr>
+                <td>チシャキ</td>
+                <td>エミコ</td>
+              </tr>
+              <tr>
+                <td>橒木</td>
+                <td>恵美子</td>
+              </tr>
+            </tbody>
+          </table>
+
+            <p class="">作成日：2023/6/1</p>
+
+            <div class="my-2 p-1 border border-danger text-center">
+              <h5>カレンダー</h5>
+              <iframe src="https://calendar.google.com/calendar/embed?src=chishakiemiko%40gmail.com&ctz=Asia%2FTokyo" style="border: 0" width="250" height="300" frameborder="1" scrolling="no"></iframe>
+          </div>
+
+            <table class="table table-bordered text-nowrap">
+              <tbody>
+                <tr>
+                  <th scope="row">来院履歴</th>
+                  <td></td>
+                </tr>
+                <% VisitHistory.all.each do | visit_history | %>
+                  <tr>
+                    <th scope="row">１</th>
+                    <td><p><a href="#" class="nav-link"><%= visit_history.visit_on %></a></p></td>
+                  </tr>
+                <% end %>
+                </tr>
+              </tbody>
+            </table>
+  </div>
+    </div>
+  </div>

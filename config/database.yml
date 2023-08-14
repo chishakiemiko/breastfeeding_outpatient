@@ -53,8 +53,8 @@ test:
 #   database: breastfeeding_outpatient_production
 #   username: breastfeeding_outpatient
 #   password: <%= ENV['BREASTFEEDING_OUTPATIENT_DATABASE_PASSWORD'] %>
-  
-  production:
+
+production:
   <<: *default
   adapter: postgresql
   encoding: unicode

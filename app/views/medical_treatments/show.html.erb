@@ -1,0 +1,218 @@
+<body class="h-100">
+    <div class="container-fluid m-5">
+      <div class="row">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block me-3 sidebar collapse h-100">
+        <!-- <div class="col-lg-3 my-5"> -->
+        <section id="side_bar" class="pt-0 text-center">
+          <nav class="m-2 p-1 border border-danger">
+          <h6 class="">患者一覧</h6>
+              <form class="d-flex" role="search">
+                <input type="search" class="form-control" placeholder="検索..." aria-label="検索...">
+              </form>
+            </nav>
+        
+              <nav class="m-2 p-1 border border-danger te">
+                <ul class="nav flex-column p-2">
+                   <p class="mb-0 pb-2">患者ID<%#= @medical_treatment.patient_id_number %></p>
+                   <span class="pb-2"><%#= @medical_treatment.patient_first_name %><%#= @patient.patient_last_name %></span>
+
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">基本情報</a></p></li>
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">乳房状態</a></p></li>
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">診療記録</a></p></li>
+                </ul>
+            </nav>
+              <nav class="m-2 p-1 border border-danger">
+                <ul class="nav flex-column p-3">
+                  <h5 class="">来院履歴</h5>
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">2023/1/1</a></p></li>
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">2023/2/3</a></p></li>
+                    <li class="nav-item"><p><a href="#" class="nav-link text-danger">2023/3/1</a></p></li>
+                </ul>
+            </nav>
+                  <div class="my-2 p-1 border border-danger">
+                      <h5>カレンダー</h5>
+                      <iframe src="https://calendar.google.com/calendar/embed?src=chishakiemiko%40gmail.com&ctz=Asia%2FTokyo" style="border: 0" width="160" height="300" frameborder="1" scrolling="no"></iframe>
+                      
+                  </div>
+                  </section>
+        </nav>
+
+          <div class="col-lg-9 p-5 border border-danger">
+            <div class="row d-flex ">
+              <div class="col-9">
+                <h2 class="paitiant_list_title my-3 text-center">診療記録</h2>
+              </div>
+              <div class="col-3">
+                  <button type="button" class="btn btn-danger">
+                  <%= link_to "編集", edit_patient_medical_treatment_path ,class: "text-white" %>
+                  </button>
+              </div>
+            </div>
+            <table class="table table-bordered text-nowrap">
+              <tbody>
+                <tr>
+                  <td scope="row">患者ID</td>
+                  <td><%= @medical_treatment.patient.patient_id_number %></td>
+                </tr>
+                <tr>
+                  <td><%= @medical_treatment.patient.patient_first_name_katakana %></td>
+                  <td><%= @medical_treatment.patient.patient_last_name_katakana %></td>
+                </tr>
+                <tr>
+                  <td><%= @medical_treatment.patient.patient_first_name %></td>
+                  <td><%= @medical_treatment.patient.patient_last_name %></td>
+                </tr>
+              </tbody>
+            </table>
+
+              <p class="">作成日</p>
+              <time><%= @medical_treatment.created_at.strftime('%Y.%-m.%d')%></time>
+              <table class="table table-bordered text-nowrap">
+                <tbody>
+                  <tr>
+                    <th scope="row">問題リスト</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">１</th>
+                    <td>
+                      <%= @medical_treatment.problem_list_1 %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">２</th>
+                    <td><%= @medical_treatment.problem_list_2 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">３</th>
+                    <td><%= @medical_treatment.problem_list_3 %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">４</th>
+                    <td><%= @medical_treatment.problem_list_4 %></td>
+                  </tr>  
+                  <tr>
+                    <th scope="row">５</th>
+                    <td><%= @medical_treatment.problem_list_5%></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">６</th>
+                      <td><%= @medical_treatment.problem_list_6 %></td>
+                    </tr>
+                  <tr>
+                    <th scope="row">根本問題</th>
+                      <td><%= @medical_treatment.root_problem %></td>
+                  </tr>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳房状態（右）</th>
+                    <td><%= @medical_treatment.right_breast_condition %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">手掌で圧して触れるしこり（右）</th>
+                    <td><%= @medical_treatment.right_breast_lump %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳房状態（左）</th>
+                    <td><%= @medical_treatment.left_breast_condition %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">診断名</th>
+                    <td><%= @medical_treatment.diagnosis_name %></td>
+                    </tr>
+                  <tr>
+                    <th scope="row">本日のマッサージ計画</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">肩背指圧</th>
+                    <td><%= @medical_treatment.shoulder_and_back_acupressure  %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">足浴</th>
+                    <td><%= @medical_treatment.foot_bath  %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳房マッサージ</th>
+                    <td><%= @medical_treatment.breast_massage %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">授乳</th>
+                    <td><%= @medical_treatment.breast_feeding %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">保護器の必要性</th>
+                    <td><%= @medical_treatment.necessity_of_protector%></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳房マッサージ内容(右)</th>
+                    <td><%= @medical_treatment.right_massage_method %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">乳房マッサージ内容(左)</th>
+                    <td><%= @medical_treatment.left_massage_method  %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">決定３要素：手技操作</th>
+                    <td><%= @medical_treatment.three_determining_factors_manipulation%></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">決定３要素：圧</th>
+                    <td><%= @medical_treatment.three_determining_factors_pressure %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">決定３要素：時間</th>
+                    <td><%= @medical_treatment.three_determining_factors_duration_of_action %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ結果(右)</th>
+                    <td><%= @medical_treatment.right_todays_massage_result %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">マッサージ結果(左)</th>
+                    <td><%= @medical_treatment.left_todays_massage_result %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">アセスメント</th>
+                    <td><%= @medical_treatment.assessment_at_initial_visit %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">指導の内容</th>
+                  </tr>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td><%= @medical_treatment.guidance_1 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td><%= @medical_treatment.guidance_2 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td><%= @medical_treatment.guidance_3 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td><%= @medical_treatment.guidance_4 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td><%= @medical_treatment.guidance_5 %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">次回までプラン</th>
+                    <td><%= @medical_treatment.plan_for_next_visit %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">方向性</th>
+                    <td><%= @medical_treatment.derection %></td>
+                  </tr>
+                  <tr>
+                    <th scope="row">次回来院日</th>
+                    <td><%= @medical_treatment.next_back_to_the_hospital_day %></td>
+                  </tr>
+                  </tbody>
+                </table>
+           </div>
+        </div>
+      </div>
+</body>

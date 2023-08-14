@@ -1,4 +1,9 @@
 class Patient < ApplicationRecord
+
+    belongs_to :hospital,optional: true
+    has_many :breast_conditions
+    has_many :medial_conditions
+    
     validates :patient_id_number, :patient_birth_date, :patient_last_name,
     :patient_first_name, :patient_age, :patient_last_name_katakana, :patient_first_name_katakana, 
     :patient_adress, :patient_phone_number, presence: true
@@ -12,5 +17,4 @@ class Patient < ApplicationRecord
     validates_format_of :patient_first_name_katakana, with: /\A[ァ-ヶー－]+\z/ 
     validates_format_of :patient_last_name_katakana, with: /\A[ァ-ヶー－]+\z/
     validates_format_of :patient_phone_number, with: /\A\d{10,11}\z/
-    
 end
